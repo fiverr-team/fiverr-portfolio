@@ -1,0 +1,87 @@
+//
+// Project name    : fiverr team portfolio
+// Version         : 0.4.9
+// Author          :  Hamza mellahi & Mohssine Aboutaj
+// Contact         : fiverr.morocco.team@gmail.com
+//
+
+//- global variable
+-var cssDir = 'css/';
+-var jsDir = 'js/';
+-var imgDir = 'img/';
+
+doctype html
+<html lang="en">
+<head>
+  meta(charset="UTF-8")
+  title Fiverr Team - portfolio
+  meta(name="author", content="Hamza mellahi & Mohssine Aboutaj")
+  meta(name="description", content="this is an portfolio website to review all we projects")
+  meta(name="keywords", content="portfolio, fiverr, team, gigs, best template, psd2responsive, creative")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+  each cssFile in ["font-awesome-all-v5.min.css", "bootstrap.min.css", "animate.min.css", "style.css"]
+    link(rel="stylesheet", type="text/css", href=cssDir + cssFile)
+</head>
+<body data-main-color="#11998E" data-second-color="#fff">
+
+='\n\n'
+<!-- Start navbar -->
+nav.navbar.navbar-expand-lg.no-decore
+  a(class="navbar-brand", href="#") logo
+  button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
+    i.fas.fa-bars.fa-2x
+  div(class="collapse navbar-collapse", id="navbarSupportedContent")
+    ul.navbar-nav.ml-auto
+      li.nav-item.active
+        a(class="nav-link", href="#home")
+          i.fas.fa-home  home
+          span.sr-only (current)
+      each linkHref, linkText in {"<i class='fas fa-home'></i> about":"about", "<i class='fas fa-home'></i> services":"service", "<i class='fas fa-home'></i> projects":"project", "<i class='fas fa-home'></i> team":"team", "<i class='fas fa-home'></i> testimonials":"testim", "<i class='fas fa-home'></i> blogs":"blog", "<i class='fas fa-home'></i> contact":"contact"}
+        li.nav-item
+          a(class="nav-link", href="#"+linkHref)!= linkText
+='\n'
+<!-- End navbar -->
+='\n\n'
+<!-- Start header -->
+header
+  div.bg-video
+    video(autoplay="on", loop="loop")
+      source(src="video/header.mp4" type="video/mp4")
+  div.overlay
+    div.container
+      div.full-centering
+        div
+          h1 I AM 
+           span#typed
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat non temporibus fugit rerum consequatur dolorum officiis, sequi aperiam saepe, natus optio sit voluptates, iure quos ipsam quidem facilis. Voluptatem, consequatur!
+          a.btn get started
+='\n'
+<!-- End header -->
+='\n\n'
+<!-- Start about -->
+div.section#about
+  div.container
+    div.special-heading.heading-center
+      h2 about
+    -var aboutClass = ['col-sm-12','col-md-6']
+    div.row.row-reverse
+      div(class=aboutClass)
+        h3 who iam
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa in perferendis debitis voluptatem cupiditate corrupti tempore animi non nesciunt? Totam, amet cupiditate mollitia incidunt dicta, tenetur possimus dolorem natus cumque.
+        a.btn.btn-success read more
+      div(class=aboutClass)
+        img(src="https://placehold.it/900x900/11998E", alt="about")
+
+='\n'
+<!-- End about -->
+='\n\n'
+
+<!-- Start scripts -->
+each jsFile in ["jquery-3.1.1.min.js", "popper.min.js", "bootstrap.min.js", "jquery.nicescroll.min.js", "scrollTopMAF.js", "wow.min.js", "typed.min.js", "custom.js"]
+  script(src=jsDir + jsFile)
+='\n'
+<!-- End scripts -->
+='\n\n'
+</body>
+</html>

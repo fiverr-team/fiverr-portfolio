@@ -1,0 +1,99 @@
+/*
+*** Project name    : fiverr team portfolio
+*** Version         : 0.4.9
+*** Author          :  Hamza mellahi & Mohssine Aboutaj
+*** Contact         : fiverr.morocco.team@gmail.com
+*/
+
+/* Global functions and variables */
+$primary  : #11998E;
+$secondary: #eaeaea;
+$light    : #fff;
+$dark     : #272727;
+
+/* Start grouping elements */
+// import require files
+@import "global";
+/* End grouping elements */
+
+/* Start navbar */
+nav {
+	background: -webkit-linear-gradient(to right, $primary, #38EF7D);
+	background: linear-gradient(to right, $primary, #38EF7D);
+}
+
+nav .nav-item {
+	@extend %trans;
+	@extend %upper;
+	color: $secondary;
+}
+
+nav .nav-item:hover {
+	@include prefix(transform, scale(1.1));
+}
+
+nav .nav-item:hover + .nav-item, 
+nav .nav-item:hover ~ .nav-item {
+	@include prefix(transform, scale(.75));
+	color: rgba($primary, .5);
+}
+/* End navbar */
+
+/* Start header */
+header {
+	@extend %dark75;
+	@extend %rel;
+	color: $light;
+}
+
+header, header > div {
+	height: 100vh;
+	width: 100%;
+}
+
+header .bg-video { @extend %rel }
+
+header .bg-video video, header .overlay {
+	@extend %abs;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+header .overlay {
+	overflow: hidden;
+	@extend %row;
+	@extend %dark75;
+	@extend %txt-c;
+}
+
+header .overlay h1 {
+	width: 60%;
+	margin: 20px auto;
+	@extend %upper;
+	color: $primary;
+	text-align: left;
+}
+
+header .overlay h1 span {
+	@extend %cap;
+	color: $secondary;
+}
+
+header .overlay p {
+	width: 75%;
+	margin: 20px auto;
+	color: $secondary
+}
+
+header .overlay .btn {
+	margin: 20px 0;
+	color: $secondary;
+	border: 1px solid $secondary;
+	@extend %rad10px;
+	@extend %upper;
+}
+/* End header */
