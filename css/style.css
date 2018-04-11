@@ -6,17 +6,23 @@
 */
 /* Global functions and variables */
 /* Start grouping elements */
+.special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6 {
+  display: inline-block; }
+
 .show {
   display: block; }
 
-.reset-all, .reset-all * {
+.reset-all, .reset-all *, .heading-aside {
   padding: 0;
   margin: 0; }
+
+.section-separator, .about {
+  overflow: hidden; }
 
 .reset-all, .reset-all * {
   float: none; }
 
-.reset-all, .reset-all * {
+.reset-all, .reset-all *, .heading-aside {
   border: none; }
 
 .no-decore, .reset-all, .reset-all *, .no-decore li, .reset-all li, .no-decore a, .reset-all a {
@@ -26,22 +32,22 @@
 .no-decore a, .reset-all a {
   color: #fff; }
 
-header .overlay {
+.heading-center, header .overlay {
   text-align: center; }
 
-header .overlay h1 span {
+header .overlay h1 span, .about .btn {
   text-transform: capitalize; }
 
-nav .nav-item, header .overlay h1, header .overlay .btn {
+h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn {
   text-transform: uppercase; }
 
-header, header .bg-video {
+.section-separator, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, header, header .bg-video, header .overlay .btn {
   position: relative; }
 
-header .bg-video video, header .overlay {
+.section-separator::after, .section-separator::before, .special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after, header .bg-video video, header .overlay, header .overlay .btn span {
   position: absolute; }
 
-nav .nav-item {
+nav .nav-item, header .overlay .btn span {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -51,13 +57,6 @@ nav .nav-item {
 
 .hide {
   display: none; }
-
-header .overlay .btn {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px; }
 
 .full-centering, header .overlay {
   display: -webkit-flex;
@@ -89,7 +88,82 @@ header, header .overlay {
 .section {
   padding: 50px 0; }
 
+.section-separator {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 25px; }
+
+.section-separator::after, .section-separator::before {
+  background-color: inherit;
+  content: '';
+  width: 50%;
+  height: 50px;
+  top: -25px;
+  -webkit-box-shadow: 0 10px 10px #11998E;
+  -moz-box-shadow: 0 10px 10px #11998E;
+  -ms-box-shadow: 0 10px 10px #11998E;
+  -o-box-shadow: 0 10px 10px #11998E;
+  box-shadow: 0 10px 10px #11998E; }
+
+.section-separator::after {
+  left: 0;
+  -webkit-transform: skewY(5deg);
+  -moz-transform: skewY(5deg);
+  -ms-transform: skewY(5deg);
+  -o-transform: skewY(5deg);
+  transform: skewY(5deg); }
+
+.section-separator::before {
+  right: 0;
+  -webkit-transform: skewY(-5deg);
+  -moz-transform: skewY(-5deg);
+  -ms-transform: skewY(-5deg);
+  -o-transform: skewY(-5deg);
+  transform: skewY(-5deg); }
+
+/* Styles for special heading */
+.special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6 {
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 40px;
+  margin-bottom: 10px; }
+
+.special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after {
+  content: '';
+  bottom: 0;
+  width: 20%;
+  border-bottom: 1px solid transparent;
+  border-color: inherit;
+  padding: 0; }
+
+.heading-aside h1, .heading-aside h2, .heading-aside h3, .heading-aside h4, .heading-aside h5, .heading-aside h6 {
+  padding: 10px 0; }
+
+.heading-center h1::after, .heading-center h2::after, .heading-center h3::after, .heading-center h4::after, .heading-center h5::after, .heading-center h6::after {
+  right: 40%;
+  left: 40%; }
+
+.heading-aside h1::after, .heading-aside h2::after, .heading-aside h3::after, .heading-aside h4::after, .heading-aside h5::after, .heading-aside h6::after {
+  left: 0; }
+
+.heading-center {
+  margin: 0 auto; }
+
+.heading-aside {
+  text-align: left; }
+
 /* End grouping elements */
+/* Start global style for elements and classes */
+body {
+  height: 10000px; }
+
+p {
+  font-size: 22px;
+  line-height: 1.5; }
+
+.special-heading {
+  margin-bottom: 20px; }
+
+/* End global style for elements and classes */
 /* Start navbar */
 nav {
   background: -webkit-linear-gradient(to right, #11998E, #38EF7D);
@@ -150,7 +224,44 @@ header .overlay p {
 
 header .overlay .btn {
   margin: 20px 0;
-  color: #eaeaea;
-  border: 1px solid #eaeaea; }
+  padding: 10px;
+  color: #eaeaea; }
+
+header .overlay .btn span {
+  border-width: 2px;
+  border-style: solid;
+  width: 10%;
+  height: 20%; }
+
+header .overlay .btn span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-color: #eaeaea transparent transparent #eaeaea; }
+
+header .overlay .btn span:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-color: #eaeaea #eaeaea transparent transparent; }
+
+header .overlay .btn span:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  border-color: transparent #eaeaea #eaeaea transparent; }
+
+header .overlay .btn span:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  border-color: transparent transparent #eaeaea #eaeaea; }
+
+header .overlay .btn:hover span {
+  width: 49%;
+  height: 49%; }
 
 /* End header */
+/* Start about */
+.about .btn {
+  color: #fff !important; }
+
+/* End about */
+.section-separator::after, .section-separator::before {
+  background-color: #11998E; }

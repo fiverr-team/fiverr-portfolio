@@ -14,7 +14,22 @@ $dark     : #272727;
 /* Start grouping elements */
 // import require files
 @import "global";
+@import "heading";
 /* End grouping elements */
+
+/* Start global style for elements and classes */
+body {
+	height: 10000px;
+}
+
+p {
+	font-size: 22px;
+	line-height: 1.5;
+}
+.special-heading {
+	margin-bottom: 20px;
+}
+/* End global style for elements and classes */
 
 /* Start navbar */
 nav {
@@ -91,9 +106,63 @@ header .overlay p {
 
 header .overlay .btn {
 	margin: 20px 0;
+	padding: 10px;
 	color: $secondary;
-	border: 1px solid $secondary;
-	@extend %rad10px;
 	@extend %upper;
+	@extend %rel;
+}
+
+header .overlay .btn span {
+	@extend %abs;
+	border-width: 2px;
+	border-style: solid;
+	width: 10%;
+	height: 20%;
+	@extend %trans;
+}
+
+header .overlay .btn span:nth-child(1) {
+	top: 0;
+	left: 0;
+	border-color: $secondary transparent transparent $secondary;
+}
+
+header .overlay .btn span:nth-child(2) {
+	top: 0;
+	right: 0;
+	border-color: $secondary $secondary transparent transparent;
+}
+
+header .overlay .btn span:nth-child(3) {
+	right: 0;
+	bottom: 0;
+	border-color: transparent $secondary $secondary transparent;
+}
+
+header .overlay .btn span:nth-child(4) {
+	left: 0;
+	bottom: 0;
+	border-color: transparent transparent $secondary $secondary;
+}
+
+header .overlay .btn:hover span {
+	width: 49%;
+	height: 49%;
 }
 /* End header */
+
+/* Start about */
+.about {
+	@extend %overHide;
+}
+
+.about .btn {
+	color: $light !important;
+	@extend %cap;
+}
+/* End about */
+
+.section-separator::after,
+.section-separator::before {
+	background-color: $primary;
+}
