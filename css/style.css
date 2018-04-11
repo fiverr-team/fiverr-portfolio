@@ -32,7 +32,7 @@
 .no-decore a, .reset-all a {
   color: #EAEAEA; }
 
-.heading-center, header .overlay {
+.heading-center, header .overlay, #services .flip-card {
   text-align: center; }
 
 header .overlay h1 span, .about .btn {
@@ -41,13 +41,15 @@ header .overlay h1 span, .about .btn {
 h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn {
   text-transform: uppercase; }
 
-.section, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, header, header .bg-video, header .overlay .btn {
+.section, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, header, header .bg-video, header .overlay .btn, #services .flip-card {
   position: relative; }
 
-.section-separator, .section-separator::after, .section-separator::before, .special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after, header .bg-video video, header .overlay, header .overlay .btn span {
+.section-separator, .section-separator::after, .section-separator::before, .special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after, header .bg-video video, header .overlay, header .overlay .btn span, #services .flip-card .front,
+#services .flip-card .back {
   position: absolute; }
 
-nav .nav-item, header .overlay .btn span {
+nav .nav-item, header .overlay .btn span, #services .flip-card .front,
+#services .flip-card .back {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -58,32 +60,46 @@ nav .nav-item, header .overlay .btn span {
 .hide {
   display: none; }
 
-.full-centering, header .overlay {
+#services .flip-card .front,
+#services .flip-card .back {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px; }
+
+.full-centering,
+#services .flip-card .back, header .overlay {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
   display: flex; }
 
-.full-centering, header .overlay {
+.full-centering,
+#services .flip-card .back, header .overlay {
   -webkit-flex-wrap: wrap;
   -moz-flex-wrap: wrap;
   flex-wrap: wrap; }
 
-.full-centering {
+.full-centering,
+#services .flip-card .back {
   justify-content: center; }
 
-.full-centering {
+.full-centering,
+#services .flip-card .back {
   -webkit-align-items: center;
   align-items: center; }
 
-.full-centering {
+.full-centering,
+#services .flip-card .back {
   width: 100%; }
 
-.full-centering {
+.full-centering,
+#services .flip-card .back {
   height: 100%; }
 
 header, header .overlay {
-  background-color: rgba(39, 39, 39, 0.75); }
+  background-color: rgba(33, 33, 33, 0.75); }
 
 .section {
   padding: 50px 0; }
@@ -158,7 +174,12 @@ header, header .overlay {
 /* End grouping elements */
 /* Start global style for elements and classes */
 body {
-  height: 10000px; }
+  height: 10000px;
+  -webkit-transform: perspectiv-3d;
+  -moz-transform: perspectiv-3d;
+  -ms-transform: perspectiv-3d;
+  -o-transform: perspectiv-3d;
+  transform: perspectiv-3d; }
 
 p {
   font-size: 22px;
@@ -167,46 +188,36 @@ p {
 .special-heading {
   margin-bottom: 20px; }
 
-.section:nth-child(odd) .section-separator::before,
-.section:nth-child(odd) .section-separator::after,
-.section:nth-child(odd) {
-  background-color: #EAEAEA; }
-
-.section:nth-child(odd) h2 {
-  color: rgba(39, 39, 39, 0.9); }
-
 .section:nth-child(even) .section-separator::before,
 .section:nth-child(even) .section-separator::after,
 .section:nth-child(even) {
-  background-color: #272727; }
+  background-color: #EAEAEA; }
 
 .section:nth-child(even) h2 {
+  color: rgba(33, 33, 33, 0.9); }
+
+.section:nth-child(odd) .section-separator::before,
+.section:nth-child(odd) .section-separator::after,
+.section:nth-child(odd) {
+  background-color: #212121; }
+
+.section:nth-child(odd) h2 {
+  color: #EAEAEA; }
+
+.section:nth-child(odd) {
   color: #EAEAEA; }
 
 /* End global style for elements and classes */
 /* Start navbar */
 nav {
-  background: -webkit-linear-gradient(to right, #11998E, #38EF7D);
-  background: linear-gradient(to right, #11998E, #38EF7D); }
+  background-color: #212121; }
 
 nav .nav-item {
-  color: #EAEAEA; }
+  color: #EAEAEA;
+  font-size: .8em; }
 
 nav .nav-item:hover {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  transform: scale(1.1); }
-
-nav .nav-item:hover + .nav-item,
-nav .nav-item:hover ~ .nav-item {
-  -webkit-transform: scale(0.75);
-  -moz-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  -o-transform: scale(0.75);
-  transform: scale(0.75);
-  color: rgba(17, 153, 142, 0.5); }
+  color: #FFFFFF; }
 
 /* End navbar */
 /* Start header */
@@ -284,7 +295,56 @@ header .overlay .btn:hover span {
 
 /* End about */
 /* Start services */
-#services .card {
-  margin-bottom: 20px; }
+#services .flip-card {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 300px;
+  padding: 20px; }
+
+#services .flip-card .front,
+#services .flip-card .back {
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  backface-visibility: hidden;
+  background-color: #212121;
+  color: #FFFFFF; }
+
+#services .flip-card .front i,
+#services .flip-card .front h4 {
+  margin: 50px auto 0 auto; }
+
+#services .flip-card .front i {
+  font-size: 4em; }
+
+#services .flip-card .back {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg); }
+
+#services .flip-card .back p {
+  width: 70%;
+  margin: auto; }
+
+#services .flip-card:hover .front {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  z-index: 2; }
+
+#services .flip-card:hover .back {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  z-index: 1; }
 
 /* End services */
