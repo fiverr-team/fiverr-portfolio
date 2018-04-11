@@ -44,12 +44,19 @@ gulp.task('cssTask', function(){
   gulp.src(cssDir)
    .pipe(live()); 
 });
+
+// html task
+gulp.task('htmlTask', function(){
+  gulp.src('*.html')
+   .pipe(live());
+});
  
 // Start default task and watching files 
 gulp.task('default', function() { 
   live.listen(); 
   gulp.watch(sassDir, ['sassTask']); 
-  gulp.watch(pugDir, ['pugTask']); 
+//  gulp.watch(pugDir, ['pugTask']); 
   gulp.watch(jsDir, ['jsTask']); 
   gulp.watch(cssDir, ['cssTask']); 
+  gulp.watch('*.html', ['htmlTask']);
 });

@@ -7,9 +7,10 @@
 
 /* Global functions and variables */
 $primary  : #11998E;
-$secondary: #eaeaea;
-$light    : #fff;
+$secondary: #38EF7D;
+$light    : #EAEAEA;
 $dark     : #272727;
+$white    : #FFFFFF;
 
 /* Start grouping elements */
 // import require files
@@ -29,18 +30,34 @@ p {
 .special-heading {
 	margin-bottom: 20px;
 }
+
+.section:nth-child(odd) .section-separator::before, 
+.section:nth-child(odd) .section-separator::after, 
+.section:nth-child(odd) {
+	background-color: $light;
+}
+
+.section:nth-child(odd) h2 { color: rgba($dark, .9) }
+
+.section:nth-child(even) .section-separator::before, 
+.section:nth-child(even) .section-separator::after, 
+.section:nth-child(even) {
+	background-color: $dark;
+}
+
+.section:nth-child(even) h2 { color: $light }
 /* End global style for elements and classes */
 
 /* Start navbar */
 nav {
-	background: -webkit-linear-gradient(to right, $primary, #38EF7D);
-	background: linear-gradient(to right, $primary, #38EF7D);
+	background: -webkit-linear-gradient(to right, $primary, $secondary);
+	background: linear-gradient(to right, $primary, $secondary);
 }
 
 nav .nav-item {
 	@extend %trans;
 	@extend %upper;
-	color: $secondary;
+	color: $light;
 }
 
 nav .nav-item:hover {
@@ -58,7 +75,7 @@ nav .nav-item:hover ~ .nav-item {
 header {
 	@extend %dark75;
 	@extend %rel;
-	color: $light;
+	color: $white;
 }
 
 header, header > div {
@@ -95,19 +112,19 @@ header .overlay h1 {
 
 header .overlay h1 span {
 	@extend %cap;
-	color: $secondary;
+	color: $light;
 }
 
 header .overlay p {
 	width: 75%;
 	margin: 20px auto;
-	color: $secondary
+	color: $light
 }
 
 header .overlay .btn {
 	margin: 20px 0;
 	padding: 10px;
-	color: $secondary;
+	color: $light;
 	@extend %upper;
 	@extend %rel;
 }
@@ -124,25 +141,25 @@ header .overlay .btn span {
 header .overlay .btn span:nth-child(1) {
 	top: 0;
 	left: 0;
-	border-color: $secondary transparent transparent $secondary;
+	border-color: $light transparent transparent $light;
 }
 
 header .overlay .btn span:nth-child(2) {
 	top: 0;
 	right: 0;
-	border-color: $secondary $secondary transparent transparent;
+	border-color: $light $light transparent transparent;
 }
 
 header .overlay .btn span:nth-child(3) {
 	right: 0;
 	bottom: 0;
-	border-color: transparent $secondary $secondary transparent;
+	border-color: transparent $light $light transparent;
 }
 
 header .overlay .btn span:nth-child(4) {
 	left: 0;
 	bottom: 0;
-	border-color: transparent transparent $secondary $secondary;
+	border-color: transparent transparent $light $light;
 }
 
 header .overlay .btn:hover span {
@@ -157,12 +174,13 @@ header .overlay .btn:hover span {
 }
 
 .about .btn {
-	color: $light !important;
+	color: $white !important;
 	@extend %cap;
 }
 /* End about */
 
-.section-separator::after,
-.section-separator::before {
-	background-color: $primary;
+/* Start services */
+#services .card {
+	margin-bottom: 20px;
 }
+/* End services */

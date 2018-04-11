@@ -67,7 +67,7 @@ header
 div.section#about
   div.container
     div.special-heading.heading-center
-      h2 about
+      h2 about us
     -var aboutClass = ['about', 'col-sm-12', 'col-md-6']
     div.row.row-reverse
       div(class=aboutClass)
@@ -77,10 +77,46 @@ div.section#about
       div(class=aboutClass)
         img(src="https://placehold.it/900x900/11998E", alt="about")
 
-div.section-separator
+  div.section-separator
 ='\n'
 <!-- End about -->
 ='\n\n'
+<!-- Start services -->
+div.section#services
+  div.container
+    div.special-heading.heading-center
+      h2 our services
+    -var servicesClass = ['col-xs-12', 'col-sm-6', 'col-4-md']
+    div.row
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+      div(class=servicesClass)
+        div.card
+          div.card-title
+          p.card-text Lorem ipsum dolor sit amet, consectetur adipisicingliquam sapiente ab quisquam!
+  div.section-separator
+='\n'
+<!-- End services -->
+='\n\n'
+
 
 <!-- Start scripts -->
 each jsFile in ["jquery-3.1.1.min.js", "popper.min.js", "bootstrap.min.js", "jquery.nicescroll.min.js", "scrollTopMAF.js", "wow.min.js", "typed.min.js", "custom.js"]

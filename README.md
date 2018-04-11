@@ -1,6 +1,7 @@
-# fiverr-portfolio
-this is portfolio to show all fiverr-team projects
+# Fiverr-Team-portfolio
 
-it's open source
+This is portfolio to show all fiverr-team projects
 
-please take a look here => <a href="http://fiverr.com/hamza_mellahi/">fiverr team account</a>
+It's open source
+
+Please take a look here => <a href="http://fiverr.com/hamza_mellahi/">Fiverr Team Account</a>

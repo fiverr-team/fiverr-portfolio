@@ -1,7 +1,7 @@
 /* Styles for special heading */
 %extend-special-heading {
   @extend %rel;
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid $light;
   @extend %ib;
   padding: 20px 40px;
   margin-bottom: 10px;
