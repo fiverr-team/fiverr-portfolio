@@ -36,6 +36,19 @@ $(function(){
       loop: true
     });
 
+  // Trigger mixitUp plugin
+  var mixer = mixitup('.projects');
+
+  // Trigger slick plugin
+  $('.fiverr-team').slick({
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    dots: true,
+    speed: 300,
+    centerMode: true
+  });
+
   // Customize the Bootstrap slider
 //  $('#whatTheySay .carousel').carousel({});
 

@@ -1,13 +1,14 @@
-var gulp    = require('gulp'), 
-    sass    = require('gulp-sass'), // sass plugin 
+const gulp    = require('gulp');
+
+var sass    = require('gulp-sass'), // sass plugin 
     pug     = require('gulp-pug'), // pug plugin 
     live    = require('gulp-livereload'), // reload browser auto plugin
     /* all directory"s */
     imgDir  = 'img/*', 
     sassDir = 'sass/*.scss', 
     pugDir  = '*.pug',
-    jsDir   = 'js',
-    cssDir  = 'css';
+    jsDir   = 'js/*',
+    cssDir  = 'css/*';
 
 // prevent error stop the watching 
 function preventError(err){ 

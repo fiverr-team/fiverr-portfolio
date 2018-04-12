@@ -35,7 +35,7 @@
 .heading-center, header .overlay, #services .flip-card {
   text-align: center; }
 
-header .overlay h1 span, .about .btn {
+header .overlay h1 span, .about .btn, .projects .controlers button {
   text-transform: capitalize; }
 
 h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn {
@@ -49,7 +49,7 @@ h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, heade
   position: absolute; }
 
 nav .nav-item, header .overlay .btn span, #services .flip-card .front,
-#services .flip-card .back {
+#services .flip-card .back, .projects .controlers button {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -69,14 +69,14 @@ nav .nav-item, header .overlay .btn span, #services .flip-card .front,
   border-radius: 10px; }
 
 .full-centering,
-#services .flip-card .back, header .overlay {
+#services .flip-card .back, header .overlay, .projects .controlers {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
   display: flex; }
 
 .full-centering,
-#services .flip-card .back, header .overlay {
+#services .flip-card .back, header .overlay, .projects .controlers {
   -webkit-flex-wrap: wrap;
   -moz-flex-wrap: wrap;
   flex-wrap: wrap; }
@@ -111,8 +111,7 @@ header, header .overlay {
   width: 100%;
   bottom: 0;
   right: 0;
-  left: 0;
-  z-index: 2; }
+  left: 0; }
 
 .section-separator::after, .section-separator::before {
   content: '';
@@ -123,7 +122,8 @@ header, header .overlay {
   -moz-box-shadow: 0 10px 10px inherit;
   -ms-box-shadow: 0 10px 10px inherit;
   -o-box-shadow: 0 10px 10px inherit;
-  box-shadow: 0 10px 10px inherit; }
+  box-shadow: 0 10px 10px inherit;
+  z-index: 2; }
 
 .section-separator::after {
   left: 0;
@@ -212,6 +212,9 @@ p {
 nav {
   background-color: #212121; }
 
+nav .navbar-toggler {
+  color: #FFFFFF; }
+
 nav .nav-item {
   color: #EAEAEA;
   font-size: .8em; }
@@ -289,12 +292,15 @@ header .overlay .btn:hover span {
   height: 49%; }
 
 /* End header */
-/* Start about */
+/* Start about us */
 .about .btn {
   color: #FFFFFF !important; }
 
-/* End about */
-/* Start services */
+/* End about us */
+/* Start our services */
+#services {
+  perspective: 400px; }
+
 #services .flip-card {
   margin-bottom: 20px;
   width: 100%;
@@ -347,4 +353,24 @@ header .overlay .btn:hover span {
   transform: rotateY(0deg);
   z-index: 1; }
 
-/* End services */
+/* End our services */
+/* Start our project */
+.projects .mix {
+  margin-bottom: 20px; }
+
+.projects .controlers button {
+  margin: 10px;
+  border: 1px solid #FFFFFF;
+  background-color: transparent;
+  color: #11998E;
+  font-size: 1.4em; }
+
+.projects .controlers button:hover, .projects .controlers .mixitup-control-active {
+  background-color: #FFFFFF !important;
+  color: #212121; }
+
+/* End our project */
+/* Start our team */
+/* End our team */
+/* Start our pricing */
+/* End our pricing */

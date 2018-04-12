@@ -54,6 +54,8 @@ p {
 /* Start navbar */
 nav { background-color: $dark; }
 
+nav .navbar-toggler { color: $white }
+
 nav .nav-item {
 	@extend %trans;
 	@extend %upper;
@@ -161,7 +163,7 @@ header .overlay .btn:hover span {
 }
 /* End header */
 
-/* Start about */
+/* Start about us */
 .about {
 	@extend %overHide;
 }
@@ -170,9 +172,11 @@ header .overlay .btn:hover span {
 	color: $white !important;
 	@extend %cap;
 }
-/* End about */
+/* End about us */
 
-/* Start services */
+/* Start our services */
+#services { perspective: 400px }
+
 #services .flip-card {
 	margin-bottom: 20px;
 	@extend %rel;
@@ -224,4 +228,36 @@ header .overlay .btn:hover span {
 	@include prefix(transform, rotateY(0deg));
 	z-index: 1;
 }
-/* End services */
+/* End our services */
+
+/* Start our project */
+.projects .mix { margin-bottom: 20px; }
+
+.projects .controlers {
+	@extend %row;
+}
+
+.projects .controlers button {
+	margin: 10px;
+	border: 1px solid $white;
+	@extend %cap;
+	background-color: transparent;
+	color: $primary;
+	font-size: 1.4em;
+	@extend %trans;
+}
+
+.projects .controlers button:hover,.projects .controlers .mixitup-control-active {
+	background-color: $white !important;
+	color: $dark;	
+}
+/* End our project */
+
+
+/* Start our team */
+
+/* End our team */
+
+/* Start our pricing */
+
+/* End our pricing */

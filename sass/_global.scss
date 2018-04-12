@@ -181,7 +181,6 @@ $codepen: #191919;
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 2;
 }
 
 .section-separator::after, .section-separator::before {
@@ -191,6 +190,7 @@ $codepen: #191919;
   @extend %abs;
   top: -25px;
   @include prefix(box-shadow, 0 10px 10px inherit);
+  z-index: 2;
 }
 
 .section-separator::after {
