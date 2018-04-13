@@ -22,7 +22,7 @@ $(function(){
   new WOW().init();
 
   // Trigger typedJs script
-  var typed3 = new Typed('#typed', {
+  var typed = new Typed('#typed', {
       strings: [
         "front end developer",
         "back end developer",
@@ -72,29 +72,6 @@ $(function(){
     }, 1000);
   });
 
-  // shuffle script
-  $('.shuffle .nav-shuffle li').on('click', function(){
-    // add class Active on active button categorie
-    $(this).addClass('shuffle-active').siblings().removeClass('shuffle-active');
-
-    if ($(this).is(':first-child')){
-      // check if this is firstChild and show all
-      $('.shuffle .shuffle-content .shuffle-img').css('opacity', 1);
-    } else {
-      // if this is not firstChild show hidden element by categorie
-      $('.shuffle .shuffle-content .shuffle-img').animate({'opacity': 0.1},250);
-      $('.shuffle .shuffle-content .shuffle-img.'+ $(this).data('filter')).animate({'opacity': 1},250);
-    }
-  });
-
-  // change text in button view more
-  $('.shuffle .view-more').on('click', function(){
-    // shurthand if...else code
-    $(this).text() == 'view more' ? $(this).text('view less') : $(this).text('view more');
-    // toggle the visibility of hidden element
-    $('.shuffle .shuffle-content .image.el-hide').slideToggle();
-  });
-
   // Create a circular progress bar using canvas
   /* Global variables for circular progress */
   var circlularProgress = document.querySelectorAll('.circularProgressMAF');
@@ -134,7 +111,18 @@ $(function(){
   $(function(){
     $('.loadingMAF').hide();
   });
-  
+
+  // calculate textarea char length
+  var limit = 150;
+  $('#contact form textarea').keyup(function(){
+    if($('#textLength').html() == 150) {
+      $('#textLength').css('color', 'red');
+    } else {
+      $('#textLength').css('color', '#212121');
+    }
+    $('#textLength').html(limit - $(this).val().length);
+  });
+
 /* End my function and codes */
 
 });

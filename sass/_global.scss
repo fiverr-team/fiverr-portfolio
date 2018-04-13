@@ -162,7 +162,7 @@ $codepen: #191919;
 }
 @for $opacity from 10 through 1 {
   %dark#{$opacity} {
-    background-color: rgba($dark, ($opacity / 100)); 
+    background-color: rgba($dark, ($opacity / 10)); 
   }
 }
 

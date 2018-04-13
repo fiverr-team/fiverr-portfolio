@@ -9,8 +9,11 @@
 $primary  : #11998E;
 $secondary: #38EF7D;
 $light    : #EAEAEA;
+//$gray     : gray;
 $dark     : #212121;
 $white    : #FFFFFF;
+
+$imgDir: '../img/';
 
 /* Start grouping elements */
 // import require files
@@ -20,7 +23,6 @@ $white    : #FFFFFF;
 
 /* Start global style for elements and classes */
 body {
-	height: 10000px;
 	@include prefix(transform, perspectiv-3d);
 }
 
@@ -261,3 +263,156 @@ header .overlay .btn:hover span {
 /* Start our pricing */
 
 /* End our pricing */
+
+/* Start testim */
+
+/* End testim */
+
+/* Start subscribe */
+.subscribe {
+	background-image: url('https://placehold.it/2000x300/222');
+	@extend %cover;
+	@extend %txt-c;
+}
+
+.subscribe h3 {
+	margin-bottom: 30px;
+}
+
+.subscribe form {
+	background-color: $white;
+	color: $dark;
+	padding: 5px;
+	@extend %rad10px;
+}
+
+.subscribe form div { padding: 5px 20px; }
+
+.subscribe form input[type="email"] {
+	border: none;
+	border-bottom: 1px solid $dark;
+}
+
+.subscribe form input[type="submit"] { margin: 0 20px; }
+/* End subscribe */
+
+/* Start our blogs */
+#blog .card {	color: $dark }
+
+#blog .card .blog-owner { @extend %overHide }
+
+#blog .card .blog-owner img { float: $left }
+
+#blog .card .blog-owner div {
+	float: $right;
+	text-align: $right;
+}
+
+#blog .card .blog-owner div h6 { font-weight: bold }
+
+#blog .card .blog-owner div span { @extend %block }
+/* End our blogs */
+
+/* Start contact us */
+#contact form { @extend %txt-c }
+
+#contact form input { margin-bottom: 10px }
+
+#contact form .msg { @extend %rel }
+
+#contact form .msg > span {
+	@extend %abs;
+	bottom: 10px;
+	left: 20px;
+	right: 0;
+	width: 100%;
+	color: $dark;
+}
+
+#contact form input[type="submit"] {
+	padding: 5px 30px;
+	@extend %upper;
+	margin-top: 15px;
+}
+/* End contact us */
+
+/* Start footer */
+footer {
+	@extend %dark75;
+	color: $white;
+	@extend .no-decore;
+}
+
+footer .column {
+	margin: 20px 0;
+	padding: 0 20px;
+}
+
+footer .column:nth-child(1) .icons { @extend %txt-c }
+
+footer .column:nth-child(1) span {
+	padding: 5px;
+	margin: 2px;
+	@extend %circle;
+	@extend %ib;
+	@extend %trans;
+}
+
+footer .column:nth-child(1) span:hover { background-color: $white }
+
+footer .column:nth-child(1) .facebook { background-color: $facebook }
+footer .column:nth-child(1) .twitter { background-color: $twitter }
+footer .column:nth-child(1) .youtube { background-color: $youtube }
+footer .column:nth-child(1) .linkedin { background-color: $linkedIn }
+footer .column:nth-child(1) .codepen { background-color: $codepen }
+footer .column:nth-child(1) .github { background-color: $github }
+footer .column:nth-child(1) .google-plus { background-color: $googlePlus }
+
+footer .column:nth-child(1) .facebook:hover { color: $facebook;}
+footer .column:nth-child(1) .twitter:hover { color: $twitter }
+footer .column:nth-child(1) .youtube:hover { color: $youtube }
+footer .column:nth-child(1) .linkedin:hover { color: $linkedIn }
+footer .column:nth-child(1) .codepen:hover { color: $codepen }
+footer .column:nth-child(1) .github:hover { color: $github }
+footer .column:nth-child(1) .google-plus:hover { color: $googlePlus }
+
+footer .column:nth-child(2) #accordion * {
+	background-color: transparent;
+	@extend .no-decore;
+	color: $white;
+}
+
+footer .column:nth-child(2) #accordion .card-header {
+	background-color: $primary;	
+}
+
+footer .column:nth-child(3) .tags span {
+	@extend %ib;
+	padding: 5px;
+	margin: 3px;
+	background-color: $primary;
+	color: $white;
+	cursor: pointer;
+}
+
+footer .column:nth-child(4) {
+	@extend %txt-c;
+	@extend %upper;
+	font-size: 1.25em;
+}
+
+.copyright {
+	background-color: $dark;
+	color: $white;
+	@extend %cap;
+	@extend %txt-c;
+	padding: 10px;
+	margin: 10px auto;
+}
+
+.copyright b { color: $primary }
+/* End footer */
+
+@media (min-width: 992px) {
+	footer .column:nth-child(2) { margin: 60px 0 }
+}
