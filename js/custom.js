@@ -115,13 +115,39 @@ $(function(){
   // calculate textarea char length
   var limit = 150;
   $('#contact form textarea').keyup(function(){
-    if($('#textLength').html() == 150) {
+    if($('#textLength').html() == limit - 1) {
       $('#textLength').css('color', 'red');
     } else {
       $('#textLength').css('color', '#212121');
     }
-    $('#textLength').html(limit - $(this).val().length);
+    $('#textLength').html($(this).val().length);
   });
+
+  // testimonials slider
+  (function autoslider() {
+   $("#testimonials .slider .active").each( function () {
+     if (!$(this).is(":last-child")){
+       $(this).delay(3000).fadeOut(900, function (){
+         $(this).removeClass("active").next().addClass("active").fadeIn();
+         autoslider();
+       });
+     } else {
+       $(this).delay(3000).fadeOut(900, function(){
+         $(this).removeClass("active");
+         $("#testimonials .slider .opin").eq(0).addClass("active").fadeIn();
+         autoslider();
+       });
+     }
+   });
+  }());
+
+  // blogs show/hide info
+  $('#blog .card .open-info').on('click', function(){
+    $(this).prev('.card-body').find('.blog-info').slideToggle();
+    $(this) + $('i').toggleClass('fa-chevron-down');
+    $(this) + $('i').toggleClass('fa-chevron-up');
+  });
+
 
 /* End my function and codes */
 

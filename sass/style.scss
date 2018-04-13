@@ -70,7 +70,7 @@ nav .nav-item:hover { color: $white }
 
 /* Start header */
 header {
-	@extend %dark75;
+	@extend %bgdark75;
 	@extend %rel;
 	color: $white;
 }
@@ -95,8 +95,8 @@ header .bg-video video, header .overlay {
 header .overlay {
 	overflow: hidden;
 	@extend %row;
-	@extend %dark75;
-	@extend %txt-c;
+	@extend %bgdark75;
+	@extend %tc;
 }
 
 header .overlay h1 {
@@ -185,7 +185,7 @@ header .overlay .btn:hover span {
 	width: 100%;
 	height: 300px;
 	padding: 20px;
-	@extend %txt-c
+	@extend %tc
 }
 
 #services .flip-card .front, 
@@ -255,24 +255,153 @@ header .overlay .btn:hover span {
 }
 /* End our project */
 
-
 /* Start our team */
-
+#team {
+	.team-person {
+		@extend %rel;
+	}
+  .over {
+		@extend %overlay;
+		@extend %trans;
+		@extend %tc;
+		@extend .full-centering;
+		background-color: $primary;
+		color: $white;
+		opacity: 0;
+		&:hover { opacity: .75 }
+		i {
+			font-size: 2em;
+			margin: 0 10px;
+		}
+	}
+}
 /* End our team */
 
 /* Start our pricing */
-
+#our-pricing {
+	background-color: $white;
+	padding-bottom: 20px;
+	@extend %tc;
+	h2 {
+		color: $dark
+	}
+	.row {
+		margin: 80px 0;
+	}
+	.se {
+		@include prefix (transform, scale(1.2));
+		.feats {
+			color: $white !important;
+			@extend %bgdark9;
+		}
+	}
+	.price {
+    margin: 15px;
+		background-color: #F4F4F4;
+		color: $dark;
+		@extend %rad20px;
+		@include prefix(box-shadow, -4px 9px 5px 0px $light );
+		.head {
+			background-color: $secondary;
+			padding: 40px 10px 50px;
+			color: $white;
+			@extend %tc;
+		}
+		.head {
+			@include prefix(border-radius, 30px 30px 0 45%);
+		}
+		.sec{
+		  @include prefix(border-radius, 10px 10px 0 0);
+			background-color: $dark;
+			i {
+				color:$dark;
+			}
+		}
+		.third{
+			@include prefix(border-radius, 0 0 45% 0);
+		}
+		.feats {
+      font-size: 13px;
+      padding: 20px 0 10px 36px;
+			text-align: $left;
+		}
+		ul {
+			padding:30px 0;
+		}
+		ul li {
+			padding: 5px;
+		}
+		.head {
+			i {
+				font-size: 50px;
+				padding: 20px;
+				@extend %circle;
+				background-color: $light;
+				color: $secondary;
+		  }
+			h3 > span {
+	      font-size: 50px
+			}
+		}
+		i {
+			color: $secondary;
+		}
+		button {
+			background-color: $dark;
+			color: $white;
+			padding: 11px;
+			@extend %rad20px;
+			width: 130px;
+			margin-#{$right}: 60px;
+			@extend %trans;
+			&:hover {
+				background-color: $secondary
+			}
+		}
+	}
+}
 /* End our pricing */
 
-/* Start testim */
-
-/* End testim */
+/* testimonials Start */
+#testimonials {
+	background:url("../img/test.jpg");
+	background-attachment: fixed;
+	@extend %cover;
+	color: $white;
+	@extend %tc;
+	height: 400px;
+	.overlay {
+		@extend %bgdark8;
+		@extend %overlay;
+  	.slider .active {
+	  	@extend %block;
+	  }
+    .slider > div {
+	  	@extend .hide
+	  }
+		h2 {
+    	color: $white
+		}
+		h3 {
+			padding-top: 20px;
+			color: $primary
+		}
+		img {
+			width:100px;
+			@extend %circle;
+		}
+		p {
+			font-size: 18px;
+		}
+	}
+}
+/* testimonials end */
 
 /* Start subscribe */
 .subscribe {
 	background-image: url('https://placehold.it/2000x300/222');
 	@extend %cover;
-	@extend %txt-c;
+	@extend %tc;
 }
 
 .subscribe h3 {
@@ -291,6 +420,7 @@ header .overlay .btn:hover span {
 .subscribe form input[type="email"] {
 	border: none;
 	border-bottom: 1px solid $dark;
+	outline: none;
 }
 
 .subscribe form input[type="submit"] { margin: 0 20px; }
@@ -311,12 +441,31 @@ header .overlay .btn:hover span {
 #blog .card .blog-owner div h6 { font-weight: bold }
 
 #blog .card .blog-owner div span { @extend %block }
+
+#blog .card .blog-info {
+//	height: 0;
+//	@extend %overHide;
+	@extend .hide;
+}
+
+#blog .card .open-info {
+	@extend %tc;
+	padding: 0;
+	cursor: pointer;
+}
 /* End our blogs */
 
 /* Start contact us */
-#contact form { @extend %txt-c }
+#contact form { @extend %tc }
 
-#contact form input { margin-bottom: 10px }
+#contact form .form-control { margin-bottom: 15px }
+
+#contact form .form-control input {
+	width: 90%;
+	border: none;
+	border-bottom: 1px solid $dark;
+	outline: none;
+}
 
 #contact form .msg { @extend %rel }
 
@@ -330,6 +479,7 @@ header .overlay .btn:hover span {
 }
 
 #contact form input[type="submit"] {
+	min-width: 25%;
 	padding: 5px 30px;
 	@extend %upper;
 	margin-top: 15px;
@@ -338,7 +488,7 @@ header .overlay .btn:hover span {
 
 /* Start footer */
 footer {
-	@extend %dark75;
+	@extend %bgdark75;
 	color: $white;
 	@extend .no-decore;
 }
@@ -348,7 +498,7 @@ footer .column {
 	padding: 0 20px;
 }
 
-footer .column:nth-child(1) .icons { @extend %txt-c }
+footer .column:nth-child(1) .icons { @extend %tc }
 
 footer .column:nth-child(1) span {
 	padding: 5px;
@@ -376,6 +526,12 @@ footer .column:nth-child(1) .codepen:hover { color: $codepen }
 footer .column:nth-child(1) .github:hover { color: $github }
 footer .column:nth-child(1) .google-plus:hover { color: $googlePlus }
 
+footer .column:nth-child(2), 
+footer .column:nth-child(3) {
+	margin-top: 60px;
+	margin-bottom: 0;
+}
+
 footer .column:nth-child(2) #accordion * {
 	background-color: transparent;
 	@extend .no-decore;
@@ -384,7 +540,13 @@ footer .column:nth-child(2) #accordion * {
 
 footer .column:nth-child(2) #accordion .card-header {
 	background-color: $primary;	
+	padding: 5px 0;
+	font-size: 1.25em;
+	@extend %cap;
+	@extend %tc;
+	cursor: pointer;
 }
+
 
 footer .column:nth-child(3) .tags span {
 	@extend %ib;
@@ -396,7 +558,7 @@ footer .column:nth-child(3) .tags span {
 }
 
 footer .column:nth-child(4) {
-	@extend %txt-c;
+	@extend %tc;
 	@extend %upper;
 	font-size: 1.25em;
 }
@@ -405,7 +567,7 @@ footer .column:nth-child(4) {
 	background-color: $dark;
 	color: $white;
 	@extend %cap;
-	@extend %txt-c;
+	@extend %tc;
 	padding: 10px;
 	margin: 10px auto;
 }
@@ -413,6 +575,7 @@ footer .column:nth-child(4) {
 .copyright b { color: $primary }
 /* End footer */
 
-@media (min-width: 992px) {
-	footer .column:nth-child(2) { margin: 60px 0 }
+@media (max-width: 992px) {
+	#our-pricing .row { margin: 40px; }
+	#our-pricing .se { @include prefix (transform, scale(1)) }
 }

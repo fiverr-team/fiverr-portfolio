@@ -52,7 +52,7 @@ $codepen: #191919;
 
 .no-decore a { color: $light }
 
-%txt-c { text-align: center }
+%tc { text-align: center }
 
 %cap { text-transform: capitalize }
 
@@ -156,12 +156,12 @@ $codepen: #191919;
 }
 
 @for $opacity from 100 through 1 {
-  %dark#{$opacity} {
+  %bgdark#{$opacity} {
   	background-color: rgba($dark, ($opacity / 100)); 
 	}
 }
 @for $opacity from 10 through 1 {
-  %dark#{$opacity} {
+  %bgdark#{$opacity} {
     background-color: rgba($dark, ($opacity / 10)); 
   }
 }
