@@ -58,24 +58,33 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 .section:nth-child(even) .section-separator::before, 
 .section:nth-child(even) .section-separator::after, 
 .section:nth-child(even) {
-	background-color: $light;
+	background-color: $dark;
 }
 
-.section:nth-child(even) h2 { color: rgba($dark, .9) }
+.section:nth-child(even) { color: $light }
 
 .section:nth-child(odd) .section-separator::before, 
 .section:nth-child(odd) .section-separator::after, 
 .section:nth-child(odd) {
-	background-color: $dark;
+	background-color: $light;
 }
 
 .section:nth-child(odd) h2 { color: $light }
 
-.section:nth-child(odd) { color: $light }
+.section:nth-child(odd) h2 { color: rgba($dark, .9) }
 /* End global style for elements and classes */
 
 /* Start navbar */
-nav { background-color: $dark }
+nav {
+	background-color: transparent;
+	position: fixed !important;
+	width: 100%;
+	right: 0;
+	left: 0;
+	top: 0;
+	z-index: 11;
+	color: $dark;
+}
 
 nav .navbar-toggler { color: $white }
 
@@ -229,10 +238,8 @@ header .overlay .btn:hover span {
 #services .flip-card .front i { font-size: 4em; }
 
 #services .flip-card .back {
-//	@include prefix(transform, rotateY(-180deg));
+	@include prefix(transform, rotateY(-180deg));
 	@extend .full-centering;
-	background-color: rgba($dark, .75);
-	@include prefix(box-shadow, 5px 5px 5px rgba($dark, .75));
 }
 
 #services .flip-card .back p {
@@ -241,47 +248,26 @@ header .overlay .btn:hover span {
 }
 
 #services .flip-card:hover .front {
-//	@include prefix(transform, rotateY(180deg));
-//	z-index: 2;
-	@include prefix(transform, rotateX(90deg));
-	transform-origin: top;
+	@include prefix(transform, rotateY(180deg));
+	z-index: 2;
 }
 
 #services .flip-card .front { z-index: 2 } 
 #services .flip-card .back { z-index: 1 }
 
 #services .flip-card:hover .back {
-//	@include prefix(transform, rotateY(0deg));
-//	z-index: 1;
+	@include prefix(transform, rotateY(0deg));
+	z-index: 1;
 }
 /* End our services */
 
 /* Start our project */
-.projects .mix { margin-bottom: 20px; }
-
-.projects .controlers {
-	@extend %row;
-	margin-bottom: 20px;
+#projects .view-more {
+	@extend %tc;
+	margin-top: 30px;
 }
 
-.projects .controlers button {
-	margin: 10px;
-	border: 1px solid $white;
-	@extend %cap;
-	background-color: transparent;
-	color: $primary;
-	font-size: 1.4em;
-	@extend %trans;
-}
-
-.projects .controlers button:hover,.projects .controlers .mixitup-control-active {
-	background-color: $white !important;
-	color: $dark;	
-}
-
-.projects .view-more { @extend %tc }
-
-.projects .view-more .btn { padding: 5px 30px; }
+#projects .view-more .btn { padding: 5px 30px; }
 /* End our project */
 
 /* Start our team */
@@ -471,11 +457,17 @@ header .overlay .btn:hover span {
 /* End subscribe */
 
 /* Start our blogs */
-#blog .card {	color: $dark }
+#blog .card {
+	color: $dark;
+	@include prefix(box-shadow, 5px 5px 5px rgba($dark, .25));
+	@extend %rad10px;
+}
 
-#blog .card .blog-owner { @extend %overHide }
-
-#blog .card .blog-owner img { float: $left }
+#blog .card .blog-owner img {
+	float: $left;
+	@extend %circle;
+	@include prefix(box-shadow, 5px 5px 5px $light);
+}
 
 #blog .card .blog-owner div {
 	float: $right;

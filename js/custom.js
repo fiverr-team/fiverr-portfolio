@@ -36,8 +36,32 @@ $(function(){
       loop: true
     });
 
-  // Trigger mixitUp plugin
-  var mixer = mixitup('.projects');
+  // Trigger slick plugin
+  $('.projects').slick({
+    centerMode: true,
+    centerPadding: '60px',
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
 
   // Trigger slick plugin
   $('.fiverr-team').slick({
@@ -55,6 +79,16 @@ $(function(){
 /* End customize plugins */
 
 /* Start my function and codes */
+
+  // change nav backgroundColor onscroll
+  var nav = document.querySelector('nav');
+  window.onscroll = function(){
+    if (window.pageYOffset >= 30) {
+      nav.style.backgroundColor = '#212121';
+    } else {
+      nav.style.backgroundColor = 'transparent';
+    }
+  };
 
   // Hide navbar on click for any link
   $('nav div#navbarSupportedContent li').on('click', function(){
