@@ -6,6 +6,7 @@
 */
 
 /* Global functions and variables */
+// colors >>
 $primary  : #11998E;
 $secondary: #38EF7D;
 $light    : #EAEAEA;
@@ -13,8 +14,12 @@ $light    : #EAEAEA;
 $dark     : #212121;
 $white    : #FFFFFF;
 
-// images directory
+// images directory >>
 $imgDir: '../img/';
+
+// fonts >>
+$mainFont: arial;
+$secondFont: tahoma;
 
 /* Start grouping elements */
 // import require files
@@ -31,6 +36,21 @@ p {
 	font-size: 22px;
 	line-height: 1.5;
 }
+
+input[type="submit"], input[type="reset"], input[type="text"] {
+  font-family: 'Font Awesome 5 Free', $mainFont;
+  font-weight: 900;
+}
+
+.btn {
+	background-color: $primary;
+	color: $white;
+	@extend %cap;
+	@extend %trans;
+}
+
+.btn:hover { background-color: rgba($primary, .75) }
+
 .special-heading {
 	margin-bottom: 20px;
 }
@@ -55,7 +75,7 @@ p {
 /* End global style for elements and classes */
 
 /* Start navbar */
-nav { background-color: $dark; }
+nav { background-color: $dark }
 
 nav .navbar-toggler { color: $white }
 
@@ -120,11 +140,12 @@ header .overlay p {
 }
 
 header .overlay .btn {
-	margin: 20px 0;
+	margin: 20px 10px;
 	padding: 10px 30px;
 	color: $light;
 	@extend %upper;
 	@extend %rel;
+	background-color: transparent;
 }
 
 header .overlay .btn span {
@@ -170,15 +191,10 @@ header .overlay .btn:hover span {
 .about {
 	@extend %overHide;
 }
-
-.about .btn {
-	color: $white !important;
-	@extend %cap;
-}
 /* End about us */
 
 /* Start our services */
-#services { perspective: 400px }
+#services { perspective: 600px }
 
 #services .flip-card {
 	margin-bottom: 20px;
@@ -213,8 +229,10 @@ header .overlay .btn:hover span {
 #services .flip-card .front i { font-size: 4em; }
 
 #services .flip-card .back {
-	@include prefix(transform, rotateY(-180deg));
-	@extend .full-centering
+//	@include prefix(transform, rotateY(-180deg));
+	@extend .full-centering;
+	background-color: rgba($dark, .75);
+	@include prefix(box-shadow, 5px 5px 5px rgba($dark, .75));
 }
 
 #services .flip-card .back p {
@@ -223,13 +241,18 @@ header .overlay .btn:hover span {
 }
 
 #services .flip-card:hover .front {
-	@include prefix(transform, rotateY(180deg));
-	z-index: 2;
+//	@include prefix(transform, rotateY(180deg));
+//	z-index: 2;
+	@include prefix(transform, rotateX(90deg));
+	transform-origin: top;
 }
 
+#services .flip-card .front { z-index: 2 } 
+#services .flip-card .back { z-index: 1 }
+
 #services .flip-card:hover .back {
-	@include prefix(transform, rotateY(0deg));
-	z-index: 1;
+//	@include prefix(transform, rotateY(0deg));
+//	z-index: 1;
 }
 /* End our services */
 
@@ -238,6 +261,7 @@ header .overlay .btn:hover span {
 
 .projects .controlers {
 	@extend %row;
+	margin-bottom: 20px;
 }
 
 .projects .controlers button {
@@ -254,6 +278,10 @@ header .overlay .btn:hover span {
 	background-color: $white !important;
 	color: $dark;	
 }
+
+.projects .view-more { @extend %tc }
+
+.projects .view-more .btn { padding: 5px 30px; }
 /* End our project */
 
 /* Start our team */
@@ -472,11 +500,37 @@ header .overlay .btn:hover span {
 /* End our blogs */
 
 /* Start contact us */
+#contact .contact-icons { @extend .no-decore }
+
+#contact .contact-icons a {
+	@extend %block;
+	@extend %cap;
+	width: 50%;
+	margin: 10px 0;
+}
+
+#contact .contact-icons span {
+	@extend %block;
+	color: $white;
+	padding: 10px;
+	font-size: 1.25em;
+}
+
+#contact .contact-icons .fiverr {
+	background-color: $white;
+	color: $dark;
+}
+#contact .contact-icons .twitter { background-color: $twitter }
+#contact .contact-icons .linkedin { background-color: $linkedIn }
+#contact .contact-icons .codepen { background-color: $codepen }
+#contact .contact-icons .github { background-color: $github }
+#contact .contact-icons .google-plus { background-color: $googlePlus }
+
 #contact form {
 	@extend %tc;
 	background-color: $white;
 	color: $dark;
-  margin-top: 25px;
+	margin: 25px 0;
 }
 
 #contact form h4 {
@@ -538,11 +592,19 @@ header .overlay .btn:hover span {
 	color: $dark;
 }
 
-#contact form input[type="submit"] {
-	min-width: 50%;
+#contact form input[type="submit"],
+#contact form input[type="reset"] {
+	min-width: 30%;
 	padding: 5px 30px;
 	@extend %upper;
-	margin-top: 15px;
+	margin: 15px;
+}
+
+#contact form input[type="reset"] { background-color: $red }
+
+#contact #show-map {
+	width: 100%;
+	height: 400px;
 }
 /* End contact us */
 
@@ -608,7 +670,7 @@ footer .column:nth-child(2) #accordion .card-header {
 }
 
 
-footer .column:nth-child(3) .tags span {
+footer .column:nth-child(3) #tags span {
 	@extend %ib;
 	padding: 5px;
 	margin: 3px;
@@ -629,7 +691,7 @@ footer .column:nth-child(4) {
 	@extend %cap;
 	@extend %tc;
 	padding: 10px;
-	margin: 10px auto;
+	margin-top: 20px;
 }
 
 .copyright b { color: $primary }

@@ -6,10 +6,10 @@
 */
 /* Global functions and variables */
 /* Start grouping elements */
-.special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, #contact form h4, footer .column:nth-child(1) span, footer .column:nth-child(3) .tags span {
+.special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, #contact form h4, footer .column:nth-child(1) span, footer .column:nth-child(3) #tags span {
   display: inline-block; }
 
-.show, #testimonials .overlay .slider .active, #blog .card .blog-owner div span {
+.show, #testimonials .overlay .slider .active, #blog .card .blog-owner div span, #contact .contact-icons a, #contact .contact-icons span {
   display: block; }
 
 .reset-all, .reset-all *, .heading-aside {
@@ -25,20 +25,21 @@
 .reset-all, .reset-all *, .heading-aside {
   border: none; }
 
-.no-decore, .reset-all, .reset-all *, footer, footer .column:nth-child(2) #accordion *, .no-decore li, .reset-all li, footer li, footer .column:nth-child(2) #accordion * li, .no-decore a, .reset-all a, footer a, footer .column:nth-child(2) #accordion * a {
+.no-decore, .reset-all, .reset-all *, #contact .contact-icons, footer, footer .column:nth-child(2) #accordion *, .no-decore li, .reset-all li, #contact .contact-icons li, footer li, footer .column:nth-child(2) #accordion * li, .no-decore a, .reset-all a, #contact .contact-icons a, footer a, footer .column:nth-child(2) #accordion * a {
   text-decoration: none;
   list-style: none; }
 
-.no-decore a, .reset-all a, footer a, footer .column:nth-child(2) #accordion * a {
+.no-decore a, .reset-all a, #contact .contact-icons a, footer a, footer .column:nth-child(2) #accordion * a {
   color: #EAEAEA; }
 
-.heading-center, header .overlay, #services .flip-card, #team .team-person .over, #our-pricing, #our-pricing .price .head, #testimonials, .subscribe, #blog .card .open-info, #contact form, footer .column:nth-child(1) .icons, footer .column:nth-child(2) #accordion .card-header, footer .column:nth-child(4), .copyright {
+.heading-center, header .overlay, #services .flip-card, .projects .view-more, #team .team-person .over, #our-pricing, #our-pricing .price .head, #testimonials, .subscribe, #blog .card .open-info, #contact form, footer .column:nth-child(1) .icons, footer .column:nth-child(2) #accordion .card-header, footer .column:nth-child(4), .copyright {
   text-align: center; }
 
-header .overlay h1 span, .about .btn, .projects .controlers button, footer .column:nth-child(2) #accordion .card-header, .copyright {
+.btn, header .overlay h1 span, .projects .controlers button, #contact .contact-icons a, footer .column:nth-child(2) #accordion .card-header, .copyright {
   text-transform: capitalize; }
 
-h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn, #contact form input[type="submit"], footer .column:nth-child(4) {
+h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn, #contact form input[type="submit"],
+#contact form input[type="reset"], footer .column:nth-child(4) {
   text-transform: uppercase; }
 
 .section, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, header, header .bg-video, header .overlay .btn, #services .flip-card, #team .team-person, #contact form .form-control, #contact form .form-control input,
@@ -63,7 +64,7 @@ h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, heade
   -o-border-radius: 50%;
   border-radius: 50%; }
 
-nav .nav-item, header .overlay .btn span, #services .flip-card .front,
+.btn, nav .nav-item, header .overlay .btn span, #services .flip-card .front,
 #services .flip-card .back, .projects .controlers button, #team .team-person .over, #our-pricing .price button, footer .column:nth-child(1) span {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -226,6 +227,17 @@ p {
   font-size: 22px;
   line-height: 1.5; }
 
+input[type="submit"], input[type="reset"], input[type="text"] {
+  font-family: "Font Awesome 5 Free", arial;
+  font-weight: 900; }
+
+.btn {
+  background-color: #11998E;
+  color: #FFFFFF; }
+
+.btn:hover {
+  background-color: rgba(17, 153, 142, 0.75); }
+
 .special-heading {
   margin-bottom: 20px; }
 
@@ -298,9 +310,10 @@ header .overlay p {
   color: #EAEAEA; }
 
 header .overlay .btn {
-  margin: 20px 0;
+  margin: 20px 10px;
   padding: 10px 30px;
-  color: #EAEAEA; }
+  color: #EAEAEA;
+  background-color: transparent; }
 
 header .overlay .btn span {
   border-width: 2px;
@@ -334,13 +347,10 @@ header .overlay .btn:hover span {
 
 /* End header */
 /* Start about us */
-.about .btn {
-  color: #FFFFFF !important; }
-
 /* End about us */
 /* Start our services */
 #services {
-  perspective: 400px; }
+  perspective: 600px; }
 
 #services .flip-card {
   margin-bottom: 20px;
@@ -368,35 +378,37 @@ header .overlay .btn:hover span {
   font-size: 4em; }
 
 #services .flip-card .back {
-  -webkit-transform: rotateY(-180deg);
-  -moz-transform: rotateY(-180deg);
-  -ms-transform: rotateY(-180deg);
-  -o-transform: rotateY(-180deg);
-  transform: rotateY(-180deg); }
+  background-color: rgba(33, 33, 33, 0.75);
+  -webkit-box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.75);
+  -moz-box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.75);
+  -ms-box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.75);
+  -o-box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.75);
+  box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.75); }
 
 #services .flip-card .back p {
   width: 70%;
   margin: auto; }
 
 #services .flip-card:hover .front {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  -o-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  transform-origin: top; }
+
+#services .flip-card .front {
   z-index: 2; }
 
-#services .flip-card:hover .back {
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  transform: rotateY(0deg);
+#services .flip-card .back {
   z-index: 1; }
 
 /* End our services */
 /* Start our project */
 .projects .mix {
+  margin-bottom: 20px; }
+
+.projects .controlers {
   margin-bottom: 20px; }
 
 .projects .controlers button {
@@ -409,6 +421,9 @@ header .overlay .btn:hover span {
 .projects .controlers button:hover, .projects .controlers .mixitup-control-active {
   background-color: #FFFFFF !important;
   color: #212121; }
+
+.projects .view-more .btn {
+  padding: 5px 30px; }
 
 /* End our project */
 /* Start our team */
@@ -574,10 +589,38 @@ header .overlay .btn:hover span {
 
 /* End our blogs */
 /* Start contact us */
+#contact .contact-icons a {
+  width: 50%;
+  margin: 10px 0; }
+
+#contact .contact-icons span {
+  color: #FFFFFF;
+  padding: 10px;
+  font-size: 1.25em; }
+
+#contact .contact-icons .fiverr {
+  background-color: #FFFFFF;
+  color: #212121; }
+
+#contact .contact-icons .twitter {
+  background-color: #55acee; }
+
+#contact .contact-icons .linkedin {
+  background-color: #007bb5; }
+
+#contact .contact-icons .codepen {
+  background-color: #191919; }
+
+#contact .contact-icons .github {
+  background-color: #24292e; }
+
+#contact .contact-icons .google-plus {
+  background-color: #dd4b39; }
+
 #contact form {
   background-color: #FFFFFF;
   color: #212121;
-  margin-top: 25px; }
+  margin: 25px 0; }
 
 #contact form h4 {
   background: red;
@@ -627,10 +670,18 @@ header .overlay .btn:hover span {
   width: 100%;
   color: #212121; }
 
-#contact form input[type="submit"] {
-  min-width: 50%;
+#contact form input[type="submit"],
+#contact form input[type="reset"] {
+  min-width: 30%;
   padding: 5px 30px;
-  margin-top: 15px; }
+  margin: 15px; }
+
+#contact form input[type="reset"] {
+  background-color: #dc3545; }
+
+#contact #show-map {
+  width: 100%;
+  height: 400px; }
 
 /* End contact us */
 /* Start footer */
@@ -705,7 +756,7 @@ footer .column:nth-child(2) #accordion .card-header {
   font-size: 1.25em;
   cursor: pointer; }
 
-footer .column:nth-child(3) .tags span {
+footer .column:nth-child(3) #tags span {
   padding: 5px;
   margin: 3px;
   background-color: #11998E;
@@ -719,7 +770,7 @@ footer .column:nth-child(4) {
   background-color: #212121;
   color: #FFFFFF;
   padding: 10px;
-  margin: 10px auto; }
+  margin-top: 20px; }
 
 .copyright b {
   color: #11998E; }

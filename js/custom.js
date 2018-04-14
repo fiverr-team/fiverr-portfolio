@@ -165,6 +165,68 @@ $(function(){
     }
   });
 
+  // set the tags in: footer > #tags
+  var tags = [
+          'Html5',
+          'Css3',
+          'javaScript',
+          'jQuery',
+          'Sass',
+          'Bootstrap',
+          'Font Awesome',
+          'Responsive',
+          'Design',
+          'Templates',
+          'Parallax',
+          'mixitUp',
+          'Slick',
+          'Shuffle',
+          'Slider Show',
+          'Plugins',
+          'Scripts',
+          'Compatibility',
+          'Forms',
+          'Website',
+          'Awesome design',
+          'Hight Quality',
+          'Githup',
+          'Codepen',
+          'Social Icons',
+          'Fiverr',
+          'Best Work',
+          'Professional Team',
+          'Modern Design',
+          'Long Support'
+      ],
+      tagsContent = document.getElementById('tags');
+  // ES6 loop
+  for(tag of tags) {
+    var theTag = document.createElement('span');
+    theTag.textContent = tag;
+    tagsContent.appendChild(theTag);
+  }
+
 /* End my function and codes */
 
 });
+
+// Trigger google maps API
+function myPosition() {
+  var output = document.getElementById('show-map'),
+      pos = {
+        lat: 33.5731, 
+        lng: -7.5898
+      },
+      map = new google.maps.Map(output, {
+        zoom: 6,
+        center: pos,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: ['roadmap', 'terrain']
+        }
+      }),
+      marker = new google.maps.Marker({
+        position: pos,
+        map: map
+      });
+}

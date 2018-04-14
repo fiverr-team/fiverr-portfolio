@@ -36,13 +36,13 @@ gulp.task('pugTask', function(){
 
 // javaScript task
 gulp.task('jsTask', function(){
-  gulp.src(jsDir)
+  gulp.src(jsDir + 'custom.js')
    .pipe(live()); 
 });
 
 // Css task
 gulp.task('cssTask', function(){
-  gulp.src(cssDir)
+  gulp.src(cssDir + 'style.css')
    .pipe(live()); 
 });
 
