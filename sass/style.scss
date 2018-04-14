@@ -17,9 +17,22 @@ $white    : #FFFFFF;
 // images directory >>
 $imgDir: '../img/';
 
+// fonts directory >>
+$fontDir: '../fonts/';
+
+@font-face {
+	font-family: Ecomica;
+	src: url('#{$fontDir}Economica-Bold-OTF.otf')
+}
+
+@font-face {
+	font-family: openSans;
+	src: url('#{$fontDir}OpenSans-Regular.ttf')
+}
+
 // fonts >>
-$mainFont: arial;
-$secondFont: tahoma;
+$mainFont: Ecomica, arial;
+$secondFont: openSans, tahoma;
 
 /* Start grouping elements */
 // import require files
@@ -35,21 +48,41 @@ body {
 p {
 	font-size: 22px;
 	line-height: 1.5;
+	font-family: $secondFont;
+}
+
+@for $i from 1 through 6 {
+	h#{$i} { font-family: $mainFont }
 }
 
 input[type="submit"], input[type="reset"], input[type="text"] {
   font-family: 'Font Awesome 5 Free', $mainFont;
   font-weight: 900;
+	background-color: $green;
 }
 
 .btn {
-	background-color: $primary;
 	color: $white;
 	@extend %cap;
-	@extend %trans;
+	@extend %rel;
+	border: 1px solid $primary;
+	@extend %overHide;
+	z-index: 1;
 }
 
-.btn:hover { background-color: rgba($primary, .75) }
+.btn::after {
+	content: '';
+	@extend %trans;
+	@extend %abs;
+	width: 0%;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	background-color: $primary;
+	z-index: -1;
+}
+
+.btn:hover::after { width: 100%; }
 
 .special-heading {
 	margin-bottom: 20px;
@@ -153,6 +186,7 @@ header .overlay .btn {
 	padding: 10px 30px;
 	color: $light;
 	@extend %upper;
+	border: none;
 	@extend %rel;
 	background-color: transparent;
 }
@@ -264,7 +298,9 @@ header .overlay .btn:hover span {
 /* Start our project */
 #projects .view-more {
 	@extend %tc;
+	@extend .no-decore;
 	margin-top: 30px;
+	color: $white;
 }
 
 #projects .view-more .btn { padding: 5px 30px; }
