@@ -157,10 +157,12 @@ $(function(){
     });
   });
   theInput.on('blur', function(){
-    $(this).prev('label').css({
-      top: '10px',
-      fontSize: '1em'
-    });
+    if ($(this).val() == '') {
+      $(this).prev('label').css({
+        top: '10px',
+        fontSize: '1em'
+      });
+    }
   });
 
 /* End my function and codes */
