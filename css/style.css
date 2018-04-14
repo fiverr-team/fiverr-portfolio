@@ -24,7 +24,7 @@
   padding: 0;
   margin: 0; }
 
-.btn, .about, #team .team-person .over {
+.effect-from-left, .about, #team .team-person .over {
   overflow: hidden; }
 
 .reset-all, .reset-all * {
@@ -43,18 +43,18 @@
 .heading-center, header .overlay, #services .flip-card, #projects .view-more, #team .team-person .over, #our-pricing, #our-pricing .price .head, #testimonials, .subscribe, #blog .card .open-info, #contact form, footer .column:nth-child(1) .icons, footer .column:nth-child(2) #accordion .card-header, footer .column:nth-child(4), .copyright {
   text-align: center; }
 
-.btn, header .overlay h1 span, #contact .contact-icons a, footer .column:nth-child(2) #accordion .card-header, .copyright {
+.effect-from-left, header .overlay h1 span, #contact .contact-icons a, footer .column:nth-child(2) #accordion .card-header, .copyright {
   text-transform: capitalize; }
 
 h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, header .overlay h1, header .overlay .btn, #contact form input[type="submit"],
 #contact form input[type="reset"], footer .column:nth-child(4) {
   text-transform: uppercase; }
 
-.section, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, .btn, header, header .bg-video, header .overlay .btn, #services .flip-card, #team .team-person, #contact form .form-control, #contact form .form-control input,
+.section, .special-heading h1, .special-heading h2, .special-heading h3, .special-heading h4, .special-heading h5, .special-heading h6, .effect-from-left, header, header .bg-video, header .overlay .btn, #services .flip-card, #team .team-person, #contact form .form-control, #contact form .form-control input,
 #contact form .form-control textarea, #contact form .msg {
   position: relative; }
 
-#testimonials .overlay, .section-separator, .section-separator::after, .section-separator::before, .special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after, .btn::after, header .bg-video video, header .overlay, header .overlay .btn span, #services .flip-card .front,
+#testimonials .overlay, .section-separator, .section-separator::after, .section-separator::before, .special-heading h1::after, .special-heading h2::after, .special-heading h3::after, .special-heading h4::after, .special-heading h5::after, .special-heading h6::after, .effect-from-left::after, header .bg-video video, header .overlay, header .overlay .btn span, #services .flip-card .front,
 #services .flip-card .back, #team .team-person .over, #contact form .form-control label, #contact form .form-control .fa-envelope, #contact form .msg .chars {
   position: absolute; }
 
@@ -72,7 +72,7 @@ h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *, nav .nav-item, heade
   -o-border-radius: 50%;
   border-radius: 50%; }
 
-.btn::after, nav .nav-item, header .overlay .btn span, #services .flip-card .front,
+.effect-from-left::after, nav .nav-item, header .overlay .btn span, #services .flip-card .front,
 #services .flip-card .back, #team .team-person .over, #our-pricing .price button, footer .column:nth-child(1) span {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -259,12 +259,12 @@ input[type="submit"], input[type="reset"], input[type="text"] {
   font-weight: 900;
   background-color: #28a745; }
 
-.btn {
+.effect-from-left {
   color: #FFFFFF;
   border: 1px solid #11998E;
   z-index: 1; }
 
-.btn::after {
+.effect-from-left::after {
   content: '';
   width: 0%;
   bottom: 0;
@@ -273,7 +273,7 @@ input[type="submit"], input[type="reset"], input[type="text"] {
   background-color: #11998E;
   z-index: -1; }
 
-.btn:hover::after {
+.effect-from-left:hover::after {
   width: 100%; }
 
 .special-heading {
@@ -358,7 +358,6 @@ header .overlay .btn {
   margin: 20px 10px;
   padding: 10px 30px;
   color: #EAEAEA;
-  border: none;
   background-color: transparent; }
 
 header .overlay .btn span {

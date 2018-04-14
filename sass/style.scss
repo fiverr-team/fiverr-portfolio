@@ -61,7 +61,7 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 	background-color: $green;
 }
 
-.btn {
+.effect-from-left {
 	color: $white;
 	@extend %cap;
 	@extend %rel;
@@ -70,7 +70,7 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 	z-index: 1;
 }
 
-.btn::after {
+.effect-from-left::after {
 	content: '';
 	@extend %trans;
 	@extend %abs;
@@ -82,7 +82,7 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 	z-index: -1;
 }
 
-.btn:hover::after { width: 100%; }
+.effect-from-left:hover::after { width: 100%; }
 
 .special-heading {
 	margin-bottom: 20px;
@@ -186,7 +186,6 @@ header .overlay .btn {
 	padding: 10px 30px;
 	color: $light;
 	@extend %upper;
-	border: none;
 	@extend %rel;
 	background-color: transparent;
 }
