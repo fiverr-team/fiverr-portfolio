@@ -521,33 +521,42 @@
     <div class="special-heading heading-center">
       <h2>contact us</h2>
     </div>
-    <form action="" method="POST">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <form action="" method="POST">
+          <h4>contact us</h4>
           <div class="form-control">
             <i class="fas fa-user"></i>
-            <input type="text" name="name" placeholder="Type Your Name" pattern="[a-zA-Z]" required="required" />
+            <label>Type Your Name</label>
+            <input type="text" name="name" pattern="[a-zA-Z]" required="required" />
           </div>
           <div class="form-control">
             <i class="fas fa-pencil-alt"></i>
-            <input type="text" name="subj" placeholder="Your Subject" pattern="[a-z0-9]" required="required" />
+            <label>Your Subject</label>
+            <input type="text" name="subj" pattern="[a-z0-9]" required="required" />
           </div>
           <div class="form-control">
             <i class="fas fa-at"></i>
-            <input type="email" name="email" placeholder="Your Email" required="required"/>
+            <label>Your Email</label>
+            <input type="email" name="email" required="required"/>
           </div>
           <div class="form-control">
-            <i class="fas fa-at"></i>
-            <input type="url" name="site" placeholder="Your Website" />
+            <i class="fas fa-globe"></i>
+            <label>Your Website</label>
+            <input type="url" name="site" />
           </div>
-        </div>
-        <div class="msg col-sm-12 col-md-6">
-          <textarea class="form-control" minlength="4" maxlength="150" placeholder="Your Message" rows="8"></textarea>
-          <span><b id="textLength">0</b> / 150</span>
-        </div>
+          <div class="form-control mgs">
+            <i class="fas fa-envelope"></i>
+            <label>Your Message</label>
+            <textarea  minlength="4" maxlength="150" rows="4"></textarea>
+            <div class="chars"><b id="textLength">0</b> / 150</div>
+          </div>
+          <input type="submit" value="send message" class="btn btn-success" />
+        </form>
       </div>
-      <input type="submit" value="submit" class="btn btn-success" />
-    </form>
+    </div>
   </div>
   <div class="section-separator"></div>
 </div>

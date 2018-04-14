@@ -13,6 +13,7 @@ $light    : #EAEAEA;
 $dark     : #212121;
 $white    : #FFFFFF;
 
+// images directory
 $imgDir: '../img/';
 
 /* Start grouping elements */
@@ -120,7 +121,7 @@ header .overlay p {
 
 header .overlay .btn {
 	margin: 20px 0;
-	padding: 10px;
+	padding: 10px 30px;
 	color: $light;
 	@extend %upper;
 	@extend %rel;
@@ -259,19 +260,32 @@ header .overlay .btn:hover span {
 #team {
 	.team-person {
 		@extend %rel;
-	}
-  .over {
-		@extend %overlay;
-		@extend %trans;
-		@extend %tc;
-		@extend .full-centering;
-		background-color: $primary;
-		color: $white;
-		opacity: 0;
-		&:hover { opacity: .75 }
-		i {
-			font-size: 2em;
-			margin: 0 10px;
+	  .over {
+		  @extend %abs;
+		  @extend %overHide;
+		  width: 0%;
+		  height: 0%;
+		  top: 50%;
+		  left: 50%;
+		  right: 50%;
+		  bottom: 50%;
+			@extend %trans;
+			@extend %tc;
+			@extend .full-centering;
+			background-color: rgba($primary, .75);
+			color: $white;
+			i {
+				font-size: 2em;
+				margin: 0 10px;
+			}
+		}
+		&:hover .over {
+		  height: 100%;
+		  width: 100%;
+		  bottom: 0;
+		  right: 0;
+		  left: 0;
+		  top: 0;
 		}
 	}
 }
@@ -364,7 +378,7 @@ header .overlay .btn:hover span {
 
 /* testimonials Start */
 #testimonials {
-	background:url("../img/test.jpg");
+	background:url("#{$imgDir}testim.jpg");
 	background-attachment: fixed;
 	@extend %cover;
 	color: $white;
@@ -413,11 +427,13 @@ header .overlay .btn:hover span {
 	color: $dark;
 	padding: 5px;
 	@extend %rad10px;
+	min-width: 500px;
 }
 
 .subscribe form div { padding: 5px 20px; }
 
 .subscribe form input[type="email"] {
+	width: 400px;
 	border: none;
 	border-bottom: 1px solid $dark;
 	outline: none;
@@ -456,20 +472,64 @@ header .overlay .btn:hover span {
 /* End our blogs */
 
 /* Start contact us */
-#contact form { @extend %tc }
+#contact form {
+	@extend %tc;
+	background-color: $white;
+	color: $dark;
+  margin-top: 25px;
+}
 
-#contact form .form-control { margin-bottom: 15px }
+#contact form h4 {
+  background: red;
+  color: $white;
+	@extend %ib;
+  padding: 10px 30px;
+  margin-top: -25px;
+}
+
+#contact form .form-control {
+	margin-top: 20px;
+	border: none;
+	@extend %rel;
+}
+
+#contact form .form-control i { color: $secondary }
+
+#contact form .form-control label {
+	@extend %abs;
+	@include prefix(transition, all .5s ease-in-out);
+	#{$left}: 10%;
+	z-index: 1;
+}
 
 #contact form .form-control input {
-	width: 90%;
+	padding-#{$left}: 5px;
 	border: none;
 	border-bottom: 1px solid $dark;
+}
+
+#contact form .form-control input, 
+#contact form .form-control textarea {
+	@extend %rel;
+	width: 90%;
 	outline: none;
+	background: none;
+	z-index: 2;
+}
+
+#contact form .form-control .fa-envelope {
+	@extend %abs;
+	top: 10px;
+	#{$left}: 25px;
+}
+
+#contact form .form-control textarea {
+	border: none;
 }
 
 #contact form .msg { @extend %rel }
 
-#contact form .msg > span {
+#contact form .msg .chars {
 	@extend %abs;
 	bottom: 10px;
 	left: 20px;
@@ -479,7 +539,7 @@ header .overlay .btn:hover span {
 }
 
 #contact form input[type="submit"] {
-	min-width: 25%;
+	min-width: 50%;
 	padding: 5px 30px;
 	@extend %upper;
 	margin-top: 15px;

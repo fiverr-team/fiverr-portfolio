@@ -148,6 +148,20 @@ $(function(){
     $(this) + $('i').toggleClass('fa-chevron-up');
   });
 
+  // move pleceholder to up on focus
+  var theInput = $('#contact form .form-control input,#contact form .form-control textarea');
+  theInput.on('focus', function(){
+    $(this).prev('label').css({
+      top: '-8px',
+      fontSize: '.8em'
+    });
+  });
+  theInput.on('blur', function(){
+    $(this).prev('label').css({
+      top: '10px',
+      fontSize: '1em'
+    });
+  });
 
 /* End my function and codes */
 
