@@ -7,13 +7,12 @@
 */
 
 $(function(){
-var mainColor = $('body').attr('data-main-color');
 
 /* Start customize plugins */
 
   // TriggerFire the jquery.niceScroll.js plugin and customiz it
   $("body").niceScroll({
-    cursorcolor: mainColor,
+    cursorcolor: $('body').attr('data-main-color'),
     cursoropacitymin: 0.5,
     cursorwidth: '5px',
     cursorborder: 'none'
@@ -23,24 +22,24 @@ var mainColor = $('body').attr('data-main-color');
   new WOW().init();
 
   // Trigger typedJs script
+
+
   var typed = new Typed('#typed', {
       strings: [
-        "front end developer",
-        "back end developer",
-        "android app developer",
-        "javaScript developer",
-        "php developer"
-      ],
-      typeSpeed: 50,
-      backSpeed: 10,
+        " ARE CREATIVE",
+        " DESIGN EVERYTHING",
+        " ARE FRONT END DEVLOPPER",
+        ],
+      typeSpeed: 70,
+      backSpeed: 54,
       smartBackspace: true, // this is a default
-      loop: true
+      loop: false
     });
 
   // Trigger slick plugin
   $('.projects').slick({
     centerMode: true,
-    centerPadding: '60px',
+    centerPadding: '10px',
     slidesToShow: 3,
     responsive: [
       {
@@ -64,7 +63,6 @@ var mainColor = $('body').attr('data-main-color');
     ]
   });
 
-  // Trigger slick plugin
   // Trigger slick plugin
   $('.fiverr-team').slick({
     dots: true,
@@ -101,21 +99,26 @@ var mainColor = $('body').attr('data-main-color');
       // instead of a settings object
     ]
   });
+  // Customize the Bootstrap slider
+//  $('#whatTheySay .carousel').carousel({});
 
 /* End customize plugins */
 
 /* Start my function and codes */
 
   // change nav backgroundColor onscroll
-  var nav = document.querySelector('nav');
+  var nav = document.querySelector('nav'),
+      a   = getElementById("nav-link");
   window.onscroll = function(){
-    if (window.pageYOffset >= nav.clientHeight) {
-      nav.classList.add("fix")
+    if (window.pageYOffset >= 30) {
+      nav.style.backgroundColor = 'white';
+      a.style.color = "black!important";
+      nav.style.boxShadow ="0 2px 10px 0 #000";
     } else {
-      nav.classList.remove("fix")
+      nav.style.backgroundColor = 'transparent';
+      nav.style.boxShadow ="0";
     }
   };
-
   // Hide navbar on click for any link
   $('nav div#navbarSupportedContent li').on('click', function(){
     $('div#navbarSupportedContent').removeClass('show');
@@ -130,6 +133,46 @@ var mainColor = $('body').attr('data-main-color');
     $('html,body').animate({
       scrollTop: $($(this).attr('href')).offset().top
     }, 1000);
+  });
+
+  // Create a circular progress bar using canvas
+  /* Global variables for circular progress */
+  var circlularProgress = document.querySelectorAll('.circularProgressMAF');
+
+  // some colors as Default
+  var progressColor = ['#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406'];
+
+  // radian
+  var rad = Math.PI / 180;
+
+  // Start Arc from top at 12 O'clock
+  var startArc = 270;
+  var fontSize = 22;
+  var i;
+
+  for (i = 0;i < circlularProgress.length;i++) {
+    var ctx = circlularProgress[i].getContext('2d');
+    var cd = circlularProgress[i].parentElement.clientWidth;
+    circlularProgress[i].width = circlularProgress[i].height = cd;
+    var progressValue = circlularProgress[i].getAttribute('data-progress-value');
+    var endArc = (progressValue / 100) * 360;
+
+    // create the circle
+    ctx.arc(cd/2, cd/2, cd/6, startArc * rad,(startArc + endArc) * rad, false);
+
+    // set the colors
+    ctx.strokeStyle = progressColor[i];
+    ctx.lineWidth = 7;
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.font = fontSize + 'px arial';
+    ctx.fillText(progressValue + '%', cd/2, (fontSize + cd)/2);
+    ctx.stroke();
+  }
+
+  // Hide the loading animation if the page finish the loading
+  $(function(){
+    $('.loadingMAF').hide();
   });
 
   // calculate textarea char length
@@ -225,79 +268,19 @@ var mainColor = $('body').attr('data-main-color');
     theTag.textContent = tag;
     tagsContent.appendChild(theTag);
   }
-  
-  // animated progress bar
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
+
+/* End my function and codes */
+// animated progress bar
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
+});
+
+// $( window ).scroll(function() {
+ // if($( window ).scrollTop() > 10){  // scroll down abit and get the action
+  $(".progress-bar").each(function(){
+    each_bar_width = $(this).attr('aria-valuenow');
+    $(this).width(each_bar_width + '%');
   });
-
-  $( window ).scroll(function() {
-    if($( window ).scrollTop() > $("#skills").offset().top){  // scroll down abit and get the action
-      $(".progress-bar").each(function(){
-        each_bar_width = $(this).attr('aria-valuenow');
-        $(this).width(each_bar_width + '%');
-      });
-    }
-  });
-
-  /* End my function and codes */
-  jssor_1_slider_init = function() {
-    var jssor_1_SlideshowTransitions = [
-      {$Duration:500,$Delay:50,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Easing:$Jease$.$OutQuad},
-      {$Duration:500,$Delay:12,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Clip:$Jease$.$InSine}},
-      {$Duration:500,$Delay:40,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$Easing:$Jease$.$InSine},
-      {$Duration:1200,x:0.2,y:-0.1,$Delay:16,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$Jease$.$InWave,$Top:$Jease$.$InWave,$Clip:$Jease$.$OutQuad},$Round:{$Left:1.3,$Top:2.5}},
-      {$Duration:1200,x:0.3,y:-0.3,$Delay:80,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$During:{$Left:[0.2,0.8],$Top:[0.2,0.8]},$Assembly:260,$ChessMode:{$Column:15,$Row:15},$Easing:{$Left:$Jease$.$InJump,$Top:$Jease$.$InJump,$Clip:$Jease$.$Swing},$Round:{$Left:0.8,$Top:0.8}},
-      {$Duration:500,y:1,$Opacity:2,$Easing:$Jease$.$InQuad}
-    ];
-
-    var jssor_1_options = {
-      $AutoPlay: 2,
-      $Idle: 1000,
-      $SlideDuration: 400,
-      $SlideEasing: $Jease$.$Early,
-      $FillMode: 2,
-      $SlideshowOptions: {
-        $Class: $JssorSlideshowRunner$,
-        $Transitions: jssor_1_SlideshowTransitions
-      },
-      $ArrowNavigatorOptions: {
-        $Class: $JssorArrowNavigator$
-      },
-      $BulletNavigatorOptions: {
-        $Class: $JssorBulletNavigator$
-      }
-    };
-
-    var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-    /*#region responsive code begin*/
-
-    var MAX_WIDTH = 1400;
-
-    function ScaleSlider() {
-        var containerElement = jssor_1_slider.$Elmt.parentNode;
-        var containerWidth = containerElement.clientWidth;
-
-        if (containerWidth) {
-
-            var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-            jssor_1_slider.$ScaleWidth(expectedWidth);
-        }
-        else {
-            window.setTimeout(ScaleSlider, 30);
-        }
-    }
-
-    ScaleSlider();
-
-    $Jssor$.$AddEvent(window, "load", ScaleSlider);
-    $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-    /*#endregion responsive code end*/
-  };
-  jssor_1_slider_init();
 });
 
 // Trigger google maps API

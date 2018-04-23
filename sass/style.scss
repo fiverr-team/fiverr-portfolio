@@ -10,7 +10,6 @@
 $primary  : #11998E;
 $secondary: #38EF7D;
 $light    : #EAEAEA;
-//$gray     : gray;
 $dark     : #212121;
 $white    : #FFFFFF;
 
@@ -21,18 +20,18 @@ $imgDir: '../img/';
 $fontDir: '../fonts/';
 
 @font-face {
-	font-family: Ecomica;
+	font-family: Roboto;
 	src: url('#{$fontDir}Economica-Bold-OTF.otf')
 }
 
 @font-face {
-	font-family: openSans;
-	src: url('#{$fontDir}OpenSans-Regular.ttf')
+	font-family: Roboto;
+	src: url('https://fonts.googleapis.com/css?family=Roboto');
 }
 
 // fonts >>
 $mainFont: Ecomica, arial;
-$secondFont: openSans, tahoma;
+$secondFont: Roboto, tahoma;
 
 /* Start grouping elements */
 // import require files
@@ -45,10 +44,24 @@ body {
 	@include prefix(transform, perspectiv-3d);
 }
 
+.fix {
+	background-color: $white;
+	color: $dark;
+}
+
+.btn {
+	border:none!important;
+  cursor: pointer;
+}
+
 p {
-	font-size: 22px;
 	line-height: 1.5;
 	font-family: $secondFont;
+}
+
+h2 {
+	font-size:40px!important;
+	padding: 0;
 }
 
 @for $i from 1 through 6 {
@@ -86,25 +99,32 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 
 .special-heading {
 	margin-bottom: 20px;
+	font-size:50px
 }
 
-.section:nth-child(even) .section-separator::before, 
-.section:nth-child(even) .section-separator::after, 
+.section { @extend %rel }
+
 .section:nth-child(even) {
-	background-color: $dark;
+	background-color: $white;
 }
 
-.section:nth-child(even) { color: $light }
-
-.section:nth-child(odd) .section-separator::before, 
-.section:nth-child(odd) .section-separator::after, 
 .section:nth-child(odd) {
 	background-color: $light;
 }
 
-.section:nth-child(odd) h2 { color: $light }
+.svg {
+	@extend %tc;
+	height: 60px;
+	width: 100%;
+	@extend %abs;
+	bottom: -60px;
+	z-index: 2;
+	margin: 0 auto;
+}
 
-.section:nth-child(odd) h2 { color: rgba($dark, .9) }
+.section:nth-child(even) .svg svg polygon { fill: $white }
+.section:nth-child(odd) .svg svg polygon { fill: $light }
+
 /* End global style for elements and classes */
 
 /* Start navbar */
@@ -112,23 +132,27 @@ nav {
 	background-color: transparent;
 	position: fixed !important;
 	width: 100%;
-	right: 0;
-	left: 0;
+	#{$right}: 0;
+	#{$left}: 0;
 	top: 0;
 	z-index: 11;
 	color: $dark;
 }
 
-nav .navbar-toggler { color: $white }
+nav .navbar-toggler { color: $white}
 
 nav .nav-item {
 	@extend %trans;
 	@extend %upper;
 	color: $light;
-	font-size: .8em;
+	font-size: .75em;
 }
 
-nav .nav-item:hover { color: $white }
+nav .nav-item {
+	color:$primary
+}
+
+nav .nav-item:hover { color: $secondary }
 /* End navbar */
 
 /* Start header */
@@ -136,38 +160,22 @@ header {
 	@extend %bgdark75;
 	@extend %rel;
 	color: $white;
-}
-
-header, header > div {
 	height: 100vh;
-	width: 100%;
-}
-
-header .bg-video { @extend %rel }
-
-header .bg-video video, header .overlay {
-	@extend %abs;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
 }
 
 header .overlay {
-	overflow: hidden;
+	@extend %overlay;
+	@extend %overHide;
+	@extend %rel;
 	@extend %row;
 	@extend %bgdark75;
 	@extend %tc;
 }
 
 header .overlay h1 {
-	width: 60%;
-	margin: 20px auto;
 	@extend %upper;
 	color: $primary;
-	text-align: left;
+	font-size:80px;
 }
 
 header .overlay h1 span {
@@ -176,70 +184,236 @@ header .overlay h1 span {
 }
 
 header .overlay p {
-	width: 75%;
-	margin: 20px auto;
-	color: $light
-}
-
-header .overlay .btn {
-	margin: 20px 10px;
-	padding: 10px 30px;
 	color: $light;
-	@extend %upper;
-	@extend %rel;
-	background-color: transparent;
+	font-size:20px;
 }
 
-header .overlay .btn span {
-	@extend %abs;
-	border-width: 2px;
-	border-style: solid;
-	width: 10%;
-	height: 20%;
+.btn-c {
+	background-color: $primary;
+  color: $white;
 	@extend %trans;
+	padding: 10px 20px;
+	@extend %rad16px;
+	font-size:25px;
+	@include prefix(transition,all .6s ease-in );
+	&:hover{
+		color: $primary;
+	  background-color: $white;
+	}
 }
 
-header .overlay .btn span:nth-child(1) {
-	top: 0;
-	left: 0;
-	border-color: $light transparent transparent $light;
+// button flip  3d
+.button-row {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
 }
 
-header .overlay .btn span:nth-child(2) {
-	top: 0;
-	right: 0;
-	border-color: $light $light transparent transparent;
+.button-row > div {
+  @extend %rel;
+  width: 100px;
+  height: 50px;
+  margin: 0 15px;
+  @include prefix(perspective, 1000px);
 }
 
-header .overlay .btn span:nth-child(3) {
-	right: 0;
-	bottom: 0;
-	border-color: transparent $light $light transparent;
+.button-row > div > a {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+	@extend %abs;
+  @include prefix(transform-style, preserve-3d);
+  @include prefix(transform, translateZ(-25px));
+  @include prefix(transition, transform 0.25s);
 }
 
-header .overlay .btn span:nth-child(4) {
-	left: 0;
-	bottom: 0;
-	border-color: transparent transparent $light $light;
+.button-row > div > a::before, .button-row > div > a::after {
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 160px;
+  height: 50px;
+  @extend %abs;
+  content: attr(title);
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+	@extend %flex;
 }
 
-header .overlay .btn:hover span {
-	width: 49%;
-	height: 49%;
+.button-row > div > a::before {
+  background-color: $primary;
+  color: $white;
+  @include prefix(transform, rotateY(0deg) translateZ(25px));
+}
+
+.button-row > div > a::after {
+  background-color: $white;
+  border-color: $dark;
+  color: $dark;
+  @include prefix(transform, rotateX(90deg) translateZ(25px));
+}
+
+.button-row > div > a:hover {
+  @include prefix(transform, translateZ(-25px) rotateX(-90deg));
+}
+
+.jssorl-004-double-tail-spin img {
+	@include prefix(animation, jssorl-004-double-tail-spin 1.2s infinite linear)
+}
+
+@keyframes jssorl-004-double-tail-spin {
+	from {
+		@include prefix(transform, rotate(0deg));
+	}
+	to {
+		@include prefix(transform, rotate(360deg));
+	}
+}
+
+
+/*jssor slider bullet skin 108 css*/
+.jssorb108 { @extend %abs }
+.jssorb108 .i {
+	position:absolute!important;
+	cursor:pointer;
+}
+.jssorb108 .i .b {
+	fill: $dark;
+	fill-opacity: 0.5;
+	stroke:$white;
+	stroke-width: 1200;
+	stroke-miterlimit: 10;
+	stroke-opacity: 0.3;
+}
+
+.jssorb108 .i:hover .b {
+	fill: $white;
+	fill-opacity: 1;
+	stroke: #2b1908;
+	stroke-opacity: .5;
+	stroke-width: 2000;
+}
+.jssorb108 .iav .b {
+	fill: $white;
+	fill-opacity: 1;
+	stroke: #ffaa00;
+	stroke-opacity: 1;
+	stroke-width: 2000;
+}
+
+.jssorb108 .i.idn { opacity:.3; }
+
+.jssora101 {
+	@extend %block;
+	@extend %abs;
+	opacity: .8;
+	cursor: pointer;
+	top: 50%!important
+}
+
+.jssora101 .c {fill: $white;
+	fill-opacity: 0.7;
+}
+
+.jssora101 .a { fill:#333; }
+.jssora101:hover { opacity:1; }
+.jssora101.jssora101dn { opacity:.6; }
+.jssora101.jssora101ds {
+	opacity:.3;
+	pointer-events:none;
 }
 /* End header */
 
 /* Start about us */
-.about {
+#about {
 	@extend %overHide;
+	background-color:$white;
+	color:$dark;
+	padding-bottom:60px;
+	h2 {
+    margin-bottom: 60px;
+    font-size:50px;
+    color:$primary
+	}
+	h3 {
+		font-size:50px;
+		margin-bottom:30px
+	}
+	span {
+		color:crimson;
+	}
+  img {
+		float: left;
+		margin-right:15px;
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+	}
+	p {
+		color:$dark;
+		font-size:19px;
+	}
+	button:hover {
+		color:$white!important
+	}
+	.info {
+		float:left!important;
+	}
 }
 /* End about us */
+/* OUR SKILLS start */
+#skills .tooltip{
+	@extend %rel;
+  float: $right;
+}
 
+#skills .tooltip > .tooltip-inner {
+	background-color: $white; 
+	padding: 5px 15px; 
+	color: rgb(23,44,66); 
+	font-weight: bold; 
+	font-size: 13px;
+}
+
+#skills .popOver + .tooltip > .tooltip-arrow {
+	border-#{$left}: 5px solid transparent; 
+	border-#{$right}: 5px solid transparent; 
+	border-top: 5px solid #eebf3f;
+}
+
+#skills .barWrapper { margin-bottom: 20px }
+
+#skills .progress {
+  border-radius: 0;
+  overflow: visible;
+}
+
+#skills .progressText { color: $dark }
+
+#skills .progress-bar {
+  background-color: $secondary;
+	@include prefix(transition, width 1.5s ease-in-out);
+}
+
+#skills img {
+	float: $left;
+	margin-top:-20px;
+}
+
+#skills h2 {
+	color: $dark !important;
+}
+/* OUR SKILLS END */
 /* Start our services */
-#services { perspective: 600px }
+#services { perspective: 800px }
 
 #services .flip-card {
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 	@extend %rel;
 	width: 100%;
 	height: 300px;
@@ -247,7 +421,7 @@ header .overlay .btn:hover span {
 	@extend %tc
 }
 
-#services .flip-card .front, 
+#services .flip-card .front,
 #services .flip-card .back {
 	@extend %abs;
 	height: 100%;
@@ -258,17 +432,18 @@ header .overlay .btn:hover span {
 	top: 0;
 	@extend %trans;
 	backface-visibility: hidden;
-	background-color: $dark;
-	color: $white;
+	background-color: $white;
+	color: $dark;
 	@extend %rad10px;
 }
 
-#services .flip-card .front i, 
+#services .flip-card .front i,
 #services .flip-card .front h4 {
 	margin: 50px auto 0 auto;
+  font-size:36px
 }
 
-#services .flip-card .front i { font-size: 4em; }
+#services .flip-card .front i { font-size: 6em; }
 
 #services .flip-card .back {
 	@include prefix(transform, rotateY(-180deg));
@@ -277,7 +452,8 @@ header .overlay .btn:hover span {
 
 #services .flip-card .back p {
 	width: 70%;
-	margin: auto
+	margin: auto;
+	font-size:20px
 }
 
 #services .flip-card:hover .front {
@@ -285,12 +461,78 @@ header .overlay .btn:hover span {
 	z-index: 2;
 }
 
-#services .flip-card .front { z-index: 2 } 
+#services .flip-card .front { z-index: 2 }
 #services .flip-card .back { z-index: 1 }
 
 #services .flip-card:hover .back {
 	@include prefix(transform, rotateY(0deg));
 	z-index: 1;
+}
+#services h2{color:$dark}
+#services i:nth-child(1)
+{
+	color: #E91E63;
+	/*#1DA1F2
+	$primary
+	$secondary
+	#0976B4*/
+}
+#services .front {
+	border:1.3px solid #EEE;
+	-webkit-box-shadow: -5px 5px 16px #d4d4d4;
+	box-shadow: -5px 5px 16px #d4d4d4;
+}
+#services .back {
+	color:$white!important;
+	font-size:14px;
+}
+#services .col-xs-12:nth-child(1) {
+	.back{
+	  background-color: orange
+	}
+	.front i{
+	  color: orange
+	}
+}
+#services .col-xs-12:nth-child(2) {
+	.back {
+	  background-color: #E91E63
+	}
+	.front i {
+	  color: #E91E63
+	}
+}
+#services .col-xs-12:nth-child(3) {
+	.back {
+		background-color:$primary
+	}
+	i {
+		color:$primary
+	}
+}
+#services .col-xs-12:nth-child(4) {
+	.back {
+	  background-color: $secondary
+	}
+	i {
+		color:$secondary
+	}
+}
+#services .col-xs-12:nth-child(5) {
+	.back {
+	  background-color: #0976B4
+	}
+	i {
+		color:#0976B4
+	}
+}
+#services .col-xs-12:nth-child(6) {
+	.back {
+	  background-color:crimson
+	}
+	i {
+		color:crimson
+	}
 }
 /* End our services */
 
@@ -301,7 +543,10 @@ header .overlay .btn:hover span {
 	margin-top: 30px;
 	color: $white;
 }
-
+#project .over {
+	background-color:$primary;
+	position: absolute!important;
+}
 #projects .view-more .btn { padding: 5px 30px; }
 /* End our project */
 
@@ -318,11 +563,12 @@ header .overlay .btn:hover span {
 		  left: 50%;
 		  right: 50%;
 		  bottom: 50%;
-			@extend %trans;
+			transition:all .6s ease ;
 			@extend %tc;
 			@extend .full-centering;
 			background-color: rgba($primary, .75);
 			color: $white;
+			cursor: pointer;
 			i {
 				font-size: 2em;
 				margin: 0 10px;
@@ -336,14 +582,17 @@ header .overlay .btn:hover span {
 		  left: 0;
 		  top: 0;
 		}
+		img {
+			height: 310px!important;
+		}
 	}
+
 }
 /* End our team */
 
 /* Start our pricing */
 #our-pricing {
-	background-color: $white;
-	padding-bottom: 20px;
+	padding-bottom: 4px;
 	@extend %tc;
 	h2 {
 		color: $dark
@@ -359,9 +608,12 @@ header .overlay .btn:hover span {
 		}
 	}
 	.price {
-    margin: 15px;
+    margin: 9px;
 		background-color: #F4F4F4;
 		color: $dark;
+		background-image: -webkit-linear-gradient( 25deg, #ececec 0%, #f8f8f8 100%);
+    background-image: -ms-linear-gradient( 25deg, #ececec 0%, #f8f8f8 100%);
+		-webkit-box-shadow: -10px 10px 0px #d4d4d4;
 		@extend %rad20px;
 		@include prefix(box-shadow, -4px 9px 5px 0px $light );
 		.head {
@@ -372,6 +624,7 @@ header .overlay .btn:hover span {
 		}
 		.head {
 			@include prefix(border-radius, 30px 30px 0 45%);
+			box-shadow: 0px 7px 7px #9b9b9b2e;
 		}
 		.sec{
 		  @include prefix(border-radius, 10px 10px 0 0);
@@ -382,10 +635,11 @@ header .overlay .btn:hover span {
 		}
 		.third{
 			@include prefix(border-radius, 0 0 45% 0);
+			@include prefix(box-shadow,10px 10px 0px #d4d4d4)
 		}
 		.feats {
       font-size: 13px;
-      padding: 20px 0 10px 36px;
+      padding: 7px 0 5px 36px;
 			text-align: $left;
 		}
 		ul {
@@ -427,14 +681,15 @@ header .overlay .btn:hover span {
 
 /* testimonials Start */
 #testimonials {
-	background:url("#{$imgDir}testim.jpg");
+	background:url("#{$imgDir}subscribe.jpg");
 	background-attachment: fixed;
+	background-size: cover;
 	@extend %cover;
 	color: $white;
 	@extend %tc;
-	height: 400px;
+	height: 360px;
 	.overlay {
-		@extend %bgdark8;
+		background-color:rgba(black,0.6);
 		@extend %overlay;
   	.slider .active {
 	  	@extend %block;
@@ -443,7 +698,8 @@ header .overlay .btn:hover span {
 	  	@extend .hide
 	  }
 		h2 {
-    	color: $white
+    	color: $white;
+
 		}
 		h3 {
 			padding-top: 20px;
@@ -462,8 +718,9 @@ header .overlay .btn:hover span {
 
 /* Start subscribe */
 .subscribe {
-	background-image: url('https://placehold.it/2000x300/222');
+	background-color:$dark;
 	@extend %cover;
+	padding: 30px;
 	@extend %tc;
 }
 
@@ -489,6 +746,9 @@ header .overlay .btn:hover span {
 }
 
 .subscribe form input[type="submit"] { margin: 0 20px; }
+.subscribe .btn {
+	color:$white!important
+}
 /* End subscribe */
 
 /* Start our blogs */
@@ -500,7 +760,6 @@ header .overlay .btn:hover span {
 
 #blog .card .blog-owner img {
 	float: $left;
-	@extend %circle;
 	@include prefix(box-shadow, 5px 5px 5px $light);
 }
 
@@ -518,7 +777,9 @@ header .overlay .btn:hover span {
 //	@extend %overHide;
 	@extend .hide;
 }
-
+/*#blog .card img:nth-child(2){
+   width:100px
+}*/
 #blog .card .open-info {
 	@extend %tc;
 	padding: 0;
@@ -527,20 +788,40 @@ header .overlay .btn:hover span {
 /* End our blogs */
 
 /* Start contact us */
+
+#contact {
+	background: url("#{$imgDir}contact.jpg");
+	@extend %cover;
+	color: $white !important;
+	padding: 0;
+}
+
+#contact .overlay {
+	@extend %rel;
+	@extend %bgdark8;
+	background-repeat:no-repeat;
+}
+
 #contact .contact-icons { @extend .no-decore }
+
+#contact h2 {
+	color:white
+}
 
 #contact .contact-icons a {
 	@extend %block;
 	@extend %cap;
-	width: 50%;
-	margin: 10px 0;
+	width: 100%;
+	margin: 0 5px 5px 5px;
+	font-size: 16px;
 }
 
 #contact .contact-icons span {
 	@extend %block;
+	width: 100%;
 	color: $white;
-	padding: 10px;
-	font-size: 1.25em;
+	padding: 8px;
+	font-size: 1em;
 }
 
 #contact .contact-icons .fiverr {
@@ -557,14 +838,15 @@ header .overlay .btn:hover span {
 	@extend %tc;
 	background-color: $white;
 	color: $dark;
-	margin: 25px 0;
+	margin: 50px 0;
+	float:right
 }
 
 #contact form h4 {
-  background: red;
+  background-color:$primary;
   color: $white;
 	@extend %ib;
-  padding: 10px 30px;
+  padding: 14px 50px;
   margin-top: -25px;
 }
 
@@ -589,7 +871,7 @@ header .overlay .btn:hover span {
 	border-bottom: 1px solid $dark;
 }
 
-#contact form .form-control input, 
+#contact form .form-control input,
 #contact form .form-control textarea {
 	@extend %rel;
 	width: 90%;
@@ -621,10 +903,11 @@ header .overlay .btn:hover span {
 
 #contact form input[type="submit"],
 #contact form input[type="reset"] {
-	min-width: 30%;
 	padding: 5px 30px;
 	@extend %upper;
-	margin: 15px;
+	@extend %block;
+	margin: 15px auto;
+	color: $white;
 }
 
 #contact form input[type="reset"] { background-color: $red }
@@ -640,6 +923,8 @@ footer {
 	@extend %bgdark75;
 	color: $white;
 	@extend .no-decore;
+	font-size:13px;
+	background-color:#232323
 }
 
 footer .column {
@@ -675,7 +960,7 @@ footer .column:nth-child(1) .codepen:hover { color: $codepen }
 footer .column:nth-child(1) .github:hover { color: $github }
 footer .column:nth-child(1) .google-plus:hover { color: $googlePlus }
 
-footer .column:nth-child(2), 
+footer .column:nth-child(2),
 footer .column:nth-child(3) {
 	margin-top: 60px;
 	margin-bottom: 0;
@@ -688,7 +973,7 @@ footer .column:nth-child(2) #accordion * {
 }
 
 footer .column:nth-child(2) #accordion .card-header {
-	background-color: $primary;	
+	background-color: $primary;
 	padding: 5px 0;
 	font-size: 1.25em;
 	@extend %cap;
@@ -713,14 +998,13 @@ footer .column:nth-child(4) {
 }
 
 .copyright {
-	background-color: $dark;
+	background-color: #333;
 	color: $white;
 	@extend %cap;
 	@extend %tc;
-	padding: 10px;
+	padding: 20px;
 	margin-top: 20px;
 }
-
 .copyright b { color: $primary }
 /* End footer */
 

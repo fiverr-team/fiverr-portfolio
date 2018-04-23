@@ -6,7 +6,7 @@
 	-moz-#{$propertie}: $value;
 	-ms-#{$propertie}: $value;
 	-o-#{$propertie}: $value;
-	#{$propertie}: $value;  
+	#{$propertie}: $value;
 }
 // End functions
 
@@ -93,13 +93,13 @@ $cyan:   #17a2b8 !default;
 
 .show { @extend %block }
 // border radius placholder classes
-@for $i from 5 through 50 {
-	// by pixel
+@for $i from 1 through 50 {
+	// by pixel (PX)
 	%rad#{$i}px {
 		@include prefix(border-radius, $i + px);
 	}
 
-	// by percentage
+	// by percentage (%)
 	%rad#{$i} {
 		@include prefix(border-radius, $i);
 	}
@@ -163,23 +163,24 @@ $cyan:   #17a2b8 !default;
 	@extend %hor-center;
 	@extend %ver-center;
 	@extend %grid-full;
-	height: 100%;
 }
 
 @for $opacity from 100 through 1 {
   %bgdark#{$opacity} {
-  	background-color: rgba($dark, ($opacity / 100)); 
+  	background-color: rgba($dark, ($opacity / 100));
 	}
 }
 @for $opacity from 10 through 1 {
   %bgdark#{$opacity} {
-    background-color: rgba($dark, ($opacity / 10)); 
+    background-color: rgba($dark, ($opacity / 10));
   }
 }
 
 .section {
-  padding: 50px 0;
   @extend %rel;
+}
+.container {
+	padding:20px 60px 50px!important
 }
 
 // section separator styles
