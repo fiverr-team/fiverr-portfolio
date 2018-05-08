@@ -46,7 +46,7 @@
   .slick-prev:before,
   .slick-next:before {
     font-family: "slick";
-    font-size: 20px;
+    font-size: 30px;
     line-height: 1;
     color: #11998E;
     opacity: 0.75;

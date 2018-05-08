@@ -7,13 +7,12 @@
 */
 
 $(function(){
-var mainColor = $('body').attr('data-main-color');
 
 /* Start customize plugins */
 
   // TriggerFire the jquery.niceScroll.js plugin and customiz it
   $("body").niceScroll({
-    cursorcolor: mainColor,
+    cursorcolor: $('body').attr('data-main-color'),
     cursoropacitymin: 0.5,
     cursorwidth: '5px',
     cursorborder: 'none'
@@ -25,14 +24,12 @@ var mainColor = $('body').attr('data-main-color');
   // Trigger typedJs script
   var typed = new Typed('#typed', {
       strings: [
-        "front end developer",
-        "back end developer",
-        "android app developer",
-        "javaScript developer",
-        "php developer"
+        "Are Creative",
+        "Are Experts",
+        "Design Everything",
       ],
-      typeSpeed: 50,
-      backSpeed: 10,
+      typeSpeed: 100,
+      backSpeed: 50,
       smartBackspace: true, // this is a default
       loop: true
     });
@@ -70,23 +67,33 @@ var mainColor = $('body').attr('data-main-color');
     dots: true,
     infinite: false,
     speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1199,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 2,
           infinite: true,
           dots: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 1,
+          dots: false
         }
       },
       {
@@ -102,6 +109,9 @@ var mainColor = $('body').attr('data-main-color');
     ]
   });
 
+  // Customize the Bootstrap slider
+//  $('#whatTheySay .carousel').carousel({});
+
 /* End customize plugins */
 
 /* Start my function and codes */
@@ -109,7 +119,7 @@ var mainColor = $('body').attr('data-main-color');
   // change nav backgroundColor onscroll
   var nav = document.querySelector('nav');
   window.onscroll = function(){
-    if (window.pageYOffset >= nav.clientHeight) {
+    if (window.pageYOffset >= 20) {
       nav.classList.add("fix")
     } else {
       nav.classList.remove("fix")
@@ -132,10 +142,51 @@ var mainColor = $('body').attr('data-main-color');
     }, 1000);
   });
 
+  // Create a circular progress bar using canvas
+  /* Global variables for circular progress */
+  var circlularProgress = document.querySelectorAll('.circularProgressMAF');
+
+  // some colors as Default
+  var progressColor = ['#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406','#029eff', '#febe02', '#87D37C', '#F89406'];
+
+  // radian
+  var rad = Math.PI / 180;
+
+  // Start Arc from top at 12 O'clock
+  var startArc = 270;
+  var fontSize = 22;
+  var i;
+
+  for (i = 0;i < circlularProgress.length;i++) {
+    var ctx = circlularProgress[i].getContext('2d');
+    var cd = circlularProgress[i].parentElement.clientWidth;
+    circlularProgress[i].width = circlularProgress[i].height = cd;
+    var progressValue = circlularProgress[i].getAttribute('data-progress-value');
+    var endArc = (progressValue / 100) * 360;
+
+    // create the circle
+    ctx.arc(cd/2, cd/2, cd/6, startArc * rad,(startArc + endArc) * rad, false);
+
+    // set the colors
+    ctx.strokeStyle = progressColor[i];
+    ctx.lineWidth = 7;
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.font = fontSize + 'px arial';
+    ctx.fillText(progressValue + '%', cd/2, (fontSize + cd)/2);
+    ctx.stroke();
+  }
+
+  // Hide the loading animation if the page finish the loading
+  $(function(){
+    $('.loadingMAF').hide();
+  });
+
   // calculate textarea char length
   var limit = 150;
+  $('#contact form textarea').attr('maxlength', limit);
   $('#contact form textarea').keyup(function(){
-    if($('#textLength').html() == limit - 1) {
+    if($('#textLength').html() >= limit - 6) {
       $('#textLength').css('color', 'red');
     } else {
       $('#textLength').css('color', '#212121');
@@ -147,12 +198,12 @@ var mainColor = $('body').attr('data-main-color');
   (function autoslider() {
    $("#testimonials .slider .active").each( function () {
      if (!$(this).is(":last-child")){
-       $(this).delay(3000).fadeOut(900, function (){
+       $(this).delay(5000).fadeOut(900, function (){
          $(this).removeClass("active").next().addClass("active").fadeIn();
          autoslider();
        });
      } else {
-       $(this).delay(3000).fadeOut(900, function(){
+       $(this).delay(5000).fadeOut(900, function(){
          $(this).removeClass("active");
          $("#testimonials .slider .opin").eq(0).addClass("active").fadeIn();
          autoslider();
@@ -160,7 +211,12 @@ var mainColor = $('body').attr('data-main-color');
      }
    });
   }());
-
+  $("#testimonials .fa-arrow-right").on("click", function(){
+      $("#test .opin").hasClass("active").fadeOut(500).removeClass("active").next().addClass("active")
+  })
+  $("#testimonials .fa-arrow-left").on("click", function(){
+      $("#test .opin").hasClass("active").removeClass("active").prev().addClass("active")
+  })
   // blogs show/hide info
   $('#blog .card .open-info').on('click', function(){
     $(this).prev('.card-body').find('.blog-info').slideToggle();
@@ -193,30 +249,12 @@ var mainColor = $('body').attr('data-main-color');
           'jQuery',
           'Sass',
           'Bootstrap',
-          'Font Awesome',
           'Responsive',
           'Design',
           'Templates',
           'Parallax',
-          'mixitUp',
-          'Slick',
-          'Shuffle',
-          'Slider Show',
-          'Plugins',
-          'Scripts',
-          'Compatibility',
-          'Forms',
-          'Website',
-          'Awesome design',
-          'Hight Quality',
-          'Githup',
-          'Codepen',
-          'Social Icons',
-          'Fiverr',
-          'Best Work',
-          'Professional Team',
-          'Modern Design',
-          'Long Support'
+          "fiverr",
+          "modern design"
       ],
       tagsContent = document.getElementById('tags');
   // ES6 loop
@@ -225,23 +263,20 @@ var mainColor = $('body').attr('data-main-color');
     theTag.textContent = tag;
     tagsContent.appendChild(theTag);
   }
-  
   // animated progress bar
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
   });
 
-  $( window ).scroll(function() {
-    if($( window ).scrollTop() > $("#skills").offset().top){  // scroll down abit and get the action
-      $(".progress-bar").each(function(){
-        each_bar_width = $(this).attr('aria-valuenow');
-        $(this).width(each_bar_width + '%');
-      });
-    }
-  });
+  // $( window ).scroll(function() {
+   // if($( window ).scrollTop() > 10){  // scroll down abit and get the action
+    $(".progress-bar").each(function(){
+      each_bar_width = $(this).attr('aria-valuenow');
+      $(this).width(each_bar_width + '%');
+    });
 
-  /* End my function and codes */
-  jssor_1_slider_init = function() {
+/* End my function and codes */
+jssor_1_slider_init = function() {
     var jssor_1_SlideshowTransitions = [
       {$Duration:500,$Delay:50,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationRectangleCross,$Easing:$Jease$.$OutQuad},
       {$Duration:500,$Delay:12,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2050,$Easing:{$Clip:$Jease$.$InSine}},
@@ -296,27 +331,6 @@ var mainColor = $('body').attr('data-main-color');
     $Jssor$.$AddEvent(window, "resize", ScaleSlider);
     $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
     /*#endregion responsive code end*/
-  };
-  jssor_1_slider_init();
+};
+jssor_1_slider_init()
 });
-
-// Trigger google maps API
-function myPosition() {
-  var output = document.getElementById('show-map'),
-      pos = {
-        lat: 33.5731,
-        lng: -7.5898
-      },
-      map = new google.maps.Map(output, {
-        zoom: 6,
-        center: pos,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            mapTypeIds: ['roadmap', 'terrain']
-        }
-      }),
-      marker = new google.maps.Marker({
-        position: pos,
-        map: map
-      });
-}

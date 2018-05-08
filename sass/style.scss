@@ -12,26 +12,27 @@ $secondary: #38EF7D;
 $light    : #EAEAEA;
 $dark     : #212121;
 $white    : #FFFFFF;
-
 // images directory >>
 $imgDir: '../img/';
 
 // fonts directory >>
 $fontDir: '../fonts/';
 
+$testheight:470px;
+
 @font-face {
-	font-family: Roboto;
+	font-family: Ecomica;
 	src: url('#{$fontDir}Economica-Bold-OTF.otf')
 }
 
 @font-face {
-	font-family: Roboto;
-	src: url('https://fonts.googleapis.com/css?family=Roboto');
+	font-family: openSans;
+	src: url('#{$fontDir}OpenSans-Regular.ttf')
 }
 
 // fonts >>
 $mainFont: Ecomica, arial;
-$secondFont: Roboto, tahoma;
+$secondFont: 'Roboto', tahoma;
 
 /* Start grouping elements */
 // import require files
@@ -45,8 +46,9 @@ body {
 }
 
 .fix {
-	background-color: $white;
-	color: $dark;
+	background-color:$white;
+	color: $dark !important;
+	z-index:4
 }
 
 .btn {
@@ -89,7 +91,7 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 	@extend %abs;
 	width: 0%;
 	bottom: 0;
-	left: 0;
+	#{$left}: 0;
 	top: 0;
 	background-color: $primary;
 	z-index: -1;
@@ -102,40 +104,42 @@ input[type="submit"], input[type="reset"], input[type="text"] {
 	font-size:50px
 }
 
-.section { @extend %rel }
+.section h2 { margin-top: 50px }
 
-.section:nth-child(even) {
-	background-color: $white;
-}
+.section:nth-child(even) { color: $light }
 
-.section:nth-child(odd) {
-	background-color: $light;
-}
+.section > h2 { color: $dark !important }
 
 .svg {
 	@extend %tc;
-	height: 60px;
+	@extend %rel;
 	width: 100%;
-	@extend %abs;
-	bottom: -60px;
 	z-index: 2;
 	margin: 0 auto;
+	height: 0px;
 }
 
-.section:nth-child(even) .svg svg polygon { fill: $white }
-.section:nth-child(odd) .svg svg polygon { fill: $light }
+.svg svg {
+	width: 168px;
+	@extend %tc;
+}
 
+.section:nth-child(odd) { background-color: $light }
+.section:nth-child(odd) .svg svg { fill: $light }
+
+.section:nth-child(even) .svg svg { fill: $secondary }
+.section:nth-child(even) { background-color: $secondary }
 /* End global style for elements and classes */
 
 /* Start navbar */
 nav {
 	background-color: transparent;
-	position: fixed !important;
+	position: fixed!important;
 	width: 100%;
 	#{$right}: 0;
 	#{$left}: 0;
 	top: 0;
-	z-index: 11;
+	z-index: 100!important;
 	color: $dark;
 }
 
@@ -160,45 +164,58 @@ header {
 	@extend %bgdark75;
 	@extend %rel;
 	color: $white;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 header .overlay {
 	@extend %overlay;
 	@extend %overHide;
-	@extend %rel;
 	@extend %row;
 	@extend %bgdark75;
 	@extend %tc;
+	position: relative!important;
+}
+
+header .full-centering {
+	#{$left}:-5%;
+	@extend %rel;
 }
 
 header .overlay h1 {
 	@extend %upper;
 	color: $primary;
-	font-size:80px;
+	font-size:110px;
+}
+
+header .type {
+	text-align: $left
 }
 
 header .overlay h1 span {
 	@extend %cap;
 	color: $light;
+	@extend %upper;
 }
 
 header .overlay p {
 	color: $light;
-	font-size:20px;
+	font-size:17px;
+	margin-bottom:80px;
 }
 
 .btn-c {
-	background-color: $primary;
-  color: $white;
-	@extend %trans;
+	background-color:$primary;
+  color:white!important;
+	cursor: pointer;
 	padding: 10px 20px;
-	@extend %rad16px;
-	font-size:25px;
-	@include prefix(transition,all .6s ease-in );
+	border-radius:16px;
+	font-size:23px;
+	margin-right:14px;
+	border:2px solid transparent;
+	@include prefix(transition, all .6s ease-in );
 	&:hover{
-		color: $primary;
-	  background-color: $white;
+	  background-color:transparent;
+		border:2px solid $primary
 	}
 }
 
@@ -215,11 +232,11 @@ header .overlay p {
 }
 
 .button-row > div {
-  @extend %rel;
+	@extend %rel;
   width: 100px;
   height: 50px;
   margin: 0 15px;
-  @include prefix(perspective, 1000px);
+	@include prefix(perspective, 1000px);
 }
 
 .button-row > div > a {
@@ -228,9 +245,11 @@ header .overlay p {
   width: 100%;
   height: 100%;
 	@extend %abs;
-  @include prefix(transform-style, preserve-3d);
+	@include prefix(transform-style, preserve-3d);
   @include prefix(transform, translateZ(-25px));
-  @include prefix(transition, transform 0.25s);
+  -webkit-transition: -webkit-transform 0.25s;
+  -moz-transition: -moz-transform 0.25s;
+  transition: transform 0.25s;
 }
 
 .button-row > div > a::before, .button-row > div > a::after {
@@ -239,96 +258,111 @@ header .overlay p {
   margin: 0;
   width: 160px;
   height: 50px;
-  @extend %abs;
+	@extend %abs;
+  box-sizing: border-box;
   content: attr(title);
   display: -webkit-box;
   display: -moz-box;
   display: box;
-	@extend %flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .button-row > div > a::before {
   background-color: $primary;
-  color: $white;
-  @include prefix(transform, rotateY(0deg) translateZ(25px));
+  color: #fff;
+	@include prefix(transform, rotateY(0deg) translateZ(25px));
 }
 
 .button-row > div > a::after {
-  background-color: $white;
-  border-color: $dark;
-  color: $dark;
-  @include prefix(transform, rotateX(90deg) translateZ(25px));
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+	@include prefix(transform, rotateX(90deg) translateZ(25px));
 }
 
 .button-row > div > a:hover {
-  @include prefix(transform, translateZ(-25px) rotateX(-90deg));
+	@include prefix(transform, translateZ(-25px) rotateX(-90deg));
 }
 
+/* Start jssor */
 .jssorl-004-double-tail-spin img {
-	@include prefix(animation, jssorl-004-double-tail-spin 1.2s infinite linear)
+	@include prefix(animation, jssorl-004-double-tail-spin 1.2s linear infinite);
 }
 
 @keyframes jssorl-004-double-tail-spin {
 	from {
-		@include prefix(transform, rotate(0deg));
+		transform: rotate(0deg);
 	}
+
 	to {
-		@include prefix(transform, rotate(360deg));
+		transform: rotate(360deg);
 	}
 }
 
 
 /*jssor slider bullet skin 108 css*/
-.jssorb108 { @extend %abs }
+.jssor_1 {
+	@extend %rel;
+	margin:0 auto;
+	top:0px;
+	left:0px;
+	@extend %overHide;
+	visibility:hidden;
+	background-color: $dark;
+}
+
+.jssorb108 {@extend %abs;}
 .jssorb108 .i {
-	position:absolute!important;
-	cursor:pointer;
+	position: absolute !important;
+	cursor: pointer;
 }
 .jssorb108 .i .b {
 	fill: $dark;
-	fill-opacity: 0.5;
-	stroke:$white;
-	stroke-width: 1200;
-	stroke-miterlimit: 10;
-	stroke-opacity: 0.3;
+	fill-opacity:0.5;
+	stroke:#fff;
+	stroke-width:1200;
+	stroke-miterlimit:10;
+	stroke-opacity:0.3;
 }
-
 .jssorb108 .i:hover .b {
 	fill: $white;
-	fill-opacity: 1;
-	stroke: #2b1908;
-	stroke-opacity: .5;
-	stroke-width: 2000;
+	fill-opacity:1;
+	stroke:#2b1908;
+	stroke-opacity:.5;
+	stroke-width:2000;
 }
 .jssorb108 .iav .b {
 	fill: $white;
-	fill-opacity: 1;
-	stroke: #ffaa00;
-	stroke-opacity: 1;
-	stroke-width: 2000;
+	fill-opacity:1;
+	stroke:#ffaa00;
+	stroke-opacity:1;
+	stroke-width:2000;
 }
-
-.jssorb108 .i.idn { opacity:.3; }
+.jssorb108 .i.idn { opacity:.3 }
 
 .jssora101 {
 	@extend %block;
 	@extend %abs;
-	opacity: .8;
-	cursor: pointer;
-	top: 50%!important
+	opacity:.8;
+	cursor:pointer;
+	top:50%!important;
 }
-
-.jssora101 .c {fill: $white;
-	fill-opacity: 0.7;
+.jssora101 .c {
+	fill: $white;
+	fill-opacity:0.7;
 }
-
-.jssora101 .a { fill:#333; }
-.jssora101:hover { opacity:1; }
-.jssora101.jssora101dn { opacity:.6; }
+.jssora101 .a {fill:#333;}
+.jssora101:hover {opacity:1;}
+.jssora101.jssora101dn {opacity:.6;}
 .jssora101.jssora101ds {
 	opacity:.3;
 	pointer-events:none;
 }
+/* End jssor */
+
 /* End header */
 
 /* Start about us */
@@ -350,67 +384,69 @@ header .overlay p {
 		color:crimson;
 	}
   img {
-		float: left;
+		float: $left;
 		margin-right:15px;
-		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+		-webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 	p {
 		color:$dark;
-		font-size:19px;
+		font-size:17px;
 	}
 	button:hover {
 		color:$white!important
 	}
 	.info {
-		float:left!important;
+		float: $left!important;
 	}
 }
 /* End about us */
-/* OUR SKILLS start */
-#skills .tooltip{
-	@extend %rel;
-  float: $right;
-}
 
-#skills .tooltip > .tooltip-inner {
-	background-color: $white; 
-	padding: 5px 15px; 
-	color: rgb(23,44,66); 
-	font-weight: bold; 
-	font-size: 13px;
-}
-
-#skills .popOver + .tooltip > .tooltip-arrow {
-	border-#{$left}: 5px solid transparent; 
-	border-#{$right}: 5px solid transparent; 
-	border-top: 5px solid #eebf3f;
-}
-
-#skills .barWrapper { margin-bottom: 20px }
-
-#skills .progress {
-  border-radius: 0;
-  overflow: visible;
-}
-
-#skills .progressText { color: $dark }
-
-#skills .progress-bar {
-  background-color: $secondary;
-	@include prefix(transition, width 1.5s ease-in-out);
-}
-
-#skills img {
-	float: $left;
-	margin-top:-20px;
-}
-
-#skills h2 {
-	color: $dark !important;
-}
+/*OUR SKILLS start */
+	#skills .tooltip{
+		@extend %rel;
+		float: $right;
+	}
+	#skills .tooltip > .tooltip-inner {
+		background-color: $white;
+		padding:5px 15px; 
+		color:rgb(23,44,66); 
+		font-weight:bold; 
+		font-size:13px;
+	}
+	#skills .popOver + .tooltip > .tooltip-arrow {
+		border-left: 5px solid transparent; 
+		border-right: 5px solid transparent; 
+		border-top: 5px solid #eebf3f;
+	}
+	#skills .progress{
+	  border-radius:0;
+	  overflow:visible;
+	}
+	#skills .progress-bar{
+		background:$primary;
+		@include prefix(transition, width 1.5s ease-in-out)
+	}
+	#skills img {
+		float: $left;
+  }
+  #skills h2 {
+		color: $dark!important;
+	}
+	#skills .barWrapper {
+		margin-bottom: 10px;
+	}
 /* OUR SKILLS END */
+
 /* Start our services */
-#services { perspective: 800px }
+#services {
+	perspective: 800px;
+  background-color:$secondary;
+	@include prefix(box-shadow, 0px 5px 5px 0px $primary);
+  h2 {
+		color:$white!important
+	}
+}
 
 #services .flip-card {
 	margin-bottom: 50px;
@@ -427,8 +463,8 @@ header .overlay p {
 	height: 100%;
 	width: 100%;
 	bottom: 0;
-	right: 0;
-	left: 0;
+	#{$right}: 0;
+	#{$left}: 0;
 	top: 0;
 	@extend %trans;
 	backface-visibility: hidden;
@@ -462,39 +498,40 @@ header .overlay p {
 }
 
 #services .flip-card .front { z-index: 2 }
+
 #services .flip-card .back { z-index: 1 }
 
 #services .flip-card:hover .back {
 	@include prefix(transform, rotateY(0deg));
 	z-index: 1;
 }
-#services h2{color:$dark}
-#services i:nth-child(1)
-{
+
+#services h2 { color:$dark }
+
+#services i:nth-child(1) {
 	color: #E91E63;
-	/*#1DA1F2
-	$primary
-	$secondary
-	#0976B4*/
 }
+
 #services .front {
 	border:1.3px solid #EEE;
-	-webkit-box-shadow: -5px 5px 16px #d4d4d4;
-	box-shadow: -5px 5px 16px #d4d4d4;
+	@include prefix(box-shadow, -2px 2px 16px #888);
 }
+
 #services .back {
 	color:$white!important;
 	font-size:14px;
 }
-#services .col-xs-12:nth-child(1) {
+
+#services .service:nth-child(1) {
 	.back{
 	  background-color: orange
 	}
-	.front i{
+	.front i {
 	  color: orange
 	}
 }
-#services .col-xs-12:nth-child(2) {
+
+#services .service:nth-child(2) {
 	.back {
 	  background-color: #E91E63
 	}
@@ -502,52 +539,85 @@ header .overlay p {
 	  color: #E91E63
 	}
 }
-#services .col-xs-12:nth-child(3) {
+
+#services .service:nth-child(3) {
 	.back {
 		background-color:$primary
 	}
-	i {
+	.front i {
 		color:$primary
 	}
 }
-#services .col-xs-12:nth-child(4) {
+#services .service:nth-child(4) {
 	.back {
-	  background-color: $secondary
+	  background-color: red
 	}
-	i {
-		color:$secondary
+	.front i {
+		color:red
 	}
 }
-#services .col-xs-12:nth-child(5) {
+#services .service:nth-child(5) {
 	.back {
 	  background-color: #0976B4
 	}
-	i {
+	.front i {
 		color:#0976B4
 	}
 }
-#services .col-xs-12:nth-child(6) {
+
+#services .service:nth-child(6) {
 	.back {
 	  background-color:crimson
 	}
-	i {
+	.front i {
 		color:crimson
 	}
 }
 /* End our services */
 
 /* Start our project */
+#projects .special-heading {
+  padding-top: 32px;
+}
+
 #projects .view-more {
 	@extend %tc;
 	@extend .no-decore;
 	margin-top: 30px;
 	color: $white;
 }
+
 #project .over {
-	background-color:$primary;
-	position: absolute!important;
+	@extend %abs;
+	@extend %overHide;
+	width: 0%;
+	height: 0%;
+	top: 50%;
+	#{$left}: 50%;
+	#{$right}: 50%;
+	bottom: 50%;
+	@include prefix(transition, all .6s ease);
+	@extend %tc;
+	@extend .full-centering;
+	background-color: rgba($primary, .75);
+	color: $white;
+	cursor: pointer;
 }
+
+#project .over:hover{
+	height: 100%;
+  width: 100%;
+	bottom: 0;
+	#{$right}: 0;
+  #{$left}: 0;
+	top: 0;
+}
+
 #projects .view-more .btn { padding: 5px 30px; }
+
+#projects polygon {
+	background-color: $light
+}
 /* End our project */
 
 /* Start our team */
@@ -560,10 +630,10 @@ header .overlay p {
 		  width: 0%;
 		  height: 0%;
 		  top: 50%;
-		  left: 50%;
-		  right: 50%;
+		  #{$left}: 50%;
+		  #{$right}: 50%;
 		  bottom: 50%;
-			transition:all .6s ease ;
+			@include prefix(transition, all .6s ease);
 			@extend %tc;
 			@extend .full-centering;
 			background-color: rgba($primary, .75);
@@ -578,15 +648,14 @@ header .overlay p {
 		  height: 100%;
 		  width: 100%;
 		  bottom: 0;
-		  right: 0;
-		  left: 0;
+		  #{$right}: 0;
+		  #{$left}: 0;
 		  top: 0;
 		}
 		img {
 			height: 310px!important;
 		}
 	}
-
 }
 /* End our team */
 
@@ -601,19 +670,19 @@ header .overlay p {
 		margin: 80px 0;
 	}
 	.se {
-		@include prefix (transform, scale(1.2));
+		@include prefix(transform, scale(1.2));
 		.feats {
 			color: $white !important;
 			@extend %bgdark9;
 		}
 	}
 	.price {
-    margin: 9px;
+    margin: 5px;
 		background-color: #F4F4F4;
 		color: $dark;
 		background-image: -webkit-linear-gradient( 25deg, #ececec 0%, #f8f8f8 100%);
     background-image: -ms-linear-gradient( 25deg, #ececec 0%, #f8f8f8 100%);
-		-webkit-box-shadow: -10px 10px 0px #d4d4d4;
+		@include prefix(box-shadow, -10px 10px 0px #d4d4d4);
 		@extend %rad20px;
 		@include prefix(box-shadow, -4px 9px 5px 0px $light );
 		.head {
@@ -623,19 +692,19 @@ header .overlay p {
 			@extend %tc;
 		}
 		.head {
-			@include prefix(border-radius, 30px 30px 0 45%);
-			box-shadow: 0px 7px 7px #9b9b9b2e;
+			@include prefix(border-radius, 0 0 0 50%);
+		  @include prefix(box-shadow, 0px 7px 7px #9b9b9b);
 		}
 		.sec{
-		  @include prefix(border-radius, 10px 10px 0 0);
+		  @include prefix(border-radius, 0px);
 			background-color: $dark;
 			i {
 				color:$dark;
 			}
 		}
 		.third{
-			@include prefix(border-radius, 0 0 45% 0);
-			@include prefix(box-shadow,10px 10px 0px #d4d4d4)
+			@include prefix(border-radius, 0 0 50% 0);
+			@include prefix(box-shadow, 0px 7px 7px #9b9b9b);
 		}
 		.feats {
       font-size: 13px;
@@ -643,7 +712,7 @@ header .overlay p {
 			text-align: $left;
 		}
 		ul {
-			padding:30px 0;
+			padding:30px 0 10px;
 		}
 		ul li {
 			padding: 5px;
@@ -664,15 +733,18 @@ header .overlay p {
 			color: $secondary;
 		}
 		button {
-			background-color: $dark;
-			color: $white;
+			background-color: white;
+			font-weight: bold;
+			color: $secondary;
 			padding: 11px;
 			@extend %rad20px;
 			width: 130px;
-			margin-#{$right}: 60px;
+			margin-#{$left}: 20px;
+			margin-bottom: 20px;
 			@extend %trans;
 			&:hover {
-				background-color: $secondary
+				background-color: $secondary;
+				color:white
 			}
 		}
 	}
@@ -681,51 +753,59 @@ header .overlay p {
 
 /* testimonials Start */
 #testimonials {
-	background:url("#{$imgDir}subscribe.jpg");
-	background-attachment: fixed;
-	background-size: cover;
 	@extend %cover;
-	color: $white;
+	color: $dark;
 	@extend %tc;
-	height: 360px;
-	.overlay {
-		background-color:rgba(black,0.6);
-		@extend %overlay;
-  	.slider .active {
-	  	@extend %block;
-	  }
-    .slider > div {
-	  	@extend .hide
-	  }
-		h2 {
-    	color: $white;
-
-		}
-		h3 {
-			padding-top: 20px;
-			color: $primary
-		}
-		img {
-			width:100px;
-			@extend %circle;
-		}
-		p {
-			font-size: 18px;
-		}
+	height: $testheight;
+  .slider > div {
+  	@extend .hide
+  }
+	h2 {
+  	color: $dark;
+	}
+	h3 {
+		padding-top: 20px;
+		color: $primary
+	}
+	img {
+		width:119px;
+		@extend %circle;
+		margin-bottom: 10px;
+	}
+	p {
+		font-size: 18px;
+	}
+	 .fa-arrow-right {
+	  @extend %abs;
+	  top:($testheight * 0.6);
+	  #{$right}: 90px;
+	  font-size: 27px;
+	  color:$dark;
+		cursor: pointer;
+	}
+  .fa-arrow-left {
+	  @extend %abs;
+	  top:($testheight * 0.6);
+	  #{$left}:90px;
+	  font-size: 27px;
+	  color:$dark;
+		cursor: pointer;
 	}
 }
 /* testimonials end */
 
 /* Start subscribe */
 .subscribe {
-	background-color:$dark;
+	background: url("#{$imgDir}greenscreen.png");
+  background-size: cover;
 	@extend %cover;
-	padding: 30px;
+	padding: 60px;
 	@extend %tc;
 }
 
 .subscribe h3 {
 	margin-bottom: 30px;
+	color:white!important
 }
 
 .subscribe form {
@@ -761,6 +841,7 @@ header .overlay p {
 #blog .card .blog-owner img {
 	float: $left;
 	@include prefix(box-shadow, 5px 5px 5px $light);
+	@extend %circle;
 }
 
 #blog .card .blog-owner div {
@@ -773,13 +854,14 @@ header .overlay p {
 #blog .card .blog-owner div span { @extend %block }
 
 #blog .card .blog-info {
-//	height: 0;
-//	@extend %overHide;
 	@extend .hide;
 }
-/*#blog .card img:nth-child(2){
-   width:100px
-}*/
+
+#blog .blog-owner img{
+	width:80px;
+	height: 80px;
+}
+
 #blog .card .open-info {
 	@extend %tc;
 	padding: 0;
@@ -788,37 +870,34 @@ header .overlay p {
 /* End our blogs */
 
 /* Start contact us */
+#contact .contact-icons { @extend .no-decore }
 
 #contact {
 	background: url("#{$imgDir}contact.jpg");
 	@extend %cover;
-	color: $white !important;
-	padding: 0;
-}
-
-#contact .overlay {
-	@extend %rel;
-	@extend %bgdark8;
-	background-repeat:no-repeat;
-}
-
-#contact .contact-icons { @extend .no-decore }
-
-#contact h2 {
-	color:white
+	color:white!important;
+	.container {
+		padding:0;
+	}
+  .overlay {
+		background-color:rgba(black,0.8);
+		background-repeat:no-repeat;
+		padding:0;
+	}
+	h2 {
+		color:white
+	}
 }
 
 #contact .contact-icons a {
 	@extend %block;
 	@extend %cap;
-	width: 100%;
-	margin: 0 5px 5px 5px;
-	font-size: 16px;
+	margin: 10px 0;
+	font-size:16px
 }
 
 #contact .contact-icons span {
 	@extend %block;
-	width: 100%;
 	color: $white;
 	padding: 8px;
 	font-size: 1em;
@@ -828,6 +907,7 @@ header .overlay p {
 	background-color: $white;
 	color: $dark;
 }
+
 #contact .contact-icons .twitter { background-color: $twitter }
 #contact .contact-icons .linkedin { background-color: $linkedIn }
 #contact .contact-icons .codepen { background-color: $codepen }
@@ -838,25 +918,28 @@ header .overlay p {
 	@extend %tc;
 	background-color: $white;
 	color: $dark;
-	margin: 50px 0;
-	float:right
 }
 
 #contact form h4 {
   background-color:$primary;
   color: $white;
 	@extend %ib;
-  padding: 14px 50px;
+  padding: 14px 70px;
   margin-top: -25px;
 }
 
 #contact form .form-control {
-	margin-top: 20px;
+	margin-top: 7px;
 	border: none;
 	@extend %rel;
 }
 
-#contact form .form-control i { color: $secondary }
+#contact form .form-control i {
+	color: $secondary;
+	@extend %abs;
+	top: 10px;
+	left: 10px;
+}
 
 #contact form .form-control label {
 	@extend %abs;
@@ -868,7 +951,7 @@ header .overlay p {
 #contact form .form-control input {
 	padding-#{$left}: 5px;
 	border: none;
-	border-bottom: 1px solid $dark;
+	border-bottom: 1px solid $light;
 }
 
 #contact form .form-control input,
@@ -880,11 +963,6 @@ header .overlay p {
 	z-index: 2;
 }
 
-#contact form .form-control .fa-envelope {
-	@extend %abs;
-	top: 10px;
-	#{$left}: 25px;
-}
 
 #contact form .form-control textarea {
 	border: none;
@@ -895,8 +973,8 @@ header .overlay p {
 #contact form .msg .chars {
 	@extend %abs;
 	bottom: 10px;
-	left: 20px;
-	right: 0;
+	#{$left}: 20px;
+	#{$right}: 0;
 	width: 100%;
 	color: $dark;
 }
@@ -905,9 +983,9 @@ header .overlay p {
 #contact form input[type="reset"] {
 	padding: 5px 30px;
 	@extend %upper;
-	@extend %block;
-	margin: 15px auto;
+	margin-bottom: 15px;
 	color: $white;
+	width: 90%;
 }
 
 #contact form input[type="reset"] { background-color: $red }
@@ -940,6 +1018,10 @@ footer .column:nth-child(1) span {
 	@extend %circle;
 	@extend %ib;
 	@extend %trans;
+}
+
+footer .column:nth-child(1) p {
+	font-size:15px
 }
 
 footer .column:nth-child(1) span:hover { background-color: $white }
@@ -975,12 +1057,11 @@ footer .column:nth-child(2) #accordion * {
 footer .column:nth-child(2) #accordion .card-header {
 	background-color: $primary;
 	padding: 5px 0;
-	font-size: 1.25em;
+	font-size:1em;
 	@extend %cap;
 	@extend %tc;
 	cursor: pointer;
 }
-
 
 footer .column:nth-child(3) #tags span {
 	@extend %ib;
@@ -997,18 +1078,29 @@ footer .column:nth-child(4) {
 	font-size: 1.25em;
 }
 
+footer .container {
+	padding: 10px!important;
+}
+
+footer .nav-link {
+	padding: 1.5px;
+}
+
 .copyright {
 	background-color: #333;
 	color: $white;
 	@extend %cap;
 	@extend %tc;
-	padding: 20px;
+	padding: 14px;
 	margin-top: 20px;
 }
+
 .copyright b { color: $primary }
 /* End footer */
 
+/* Start media query max-width= 992px */
 @media (max-width: 992px) {
 	#our-pricing .row { margin: 40px; }
 	#our-pricing .se { @include prefix (transform, scale(1)) }
 }
+/* End media query max-width= 992px */
